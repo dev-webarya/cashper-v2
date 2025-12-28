@@ -9,6 +9,9 @@ FROM node:20-alpine AS frontend-builder
 
 WORKDIR /app/frontend
 
+# Set production API URL for Vite build
+ENV VITE_API_URL=https://cashper.ai
+
 # Copy frontend package files
 COPY cashper_frontend/package*.json ./
 
