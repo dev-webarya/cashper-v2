@@ -2515,3 +2515,4 @@ const Business_loan = ({ isPopupMode = false, onPopupClose }) => {
 };
 
 export default Business_loan;
+

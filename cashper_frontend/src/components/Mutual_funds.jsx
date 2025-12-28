@@ -25,7 +25,7 @@ import {
   FaPhone,
   FaEnvelope,
   FaMapMarkerAlt,
-  FaIdCard,
+  FaCreditCard,
   FaHome,
   FaCamera,
   FaCalculator
@@ -677,7 +677,7 @@ const Mutual_funds = ({ isPopupMode = false, onPopupClose }) => {
     {
       title: "PAN Card",
       description: "Mandatory for all mutual fund investments as per regulatory requirements",
-      icon: <FaIdCard />,
+      icon: <FaCreditCard />,
       items: ["Original PAN card or PAN card photocopy", "Must be valid and not expired"]
     },
     {
@@ -1454,7 +1454,7 @@ const Mutual_funds = ({ isPopupMode = false, onPopupClose }) => {
 
                       <div>
                         <label className="block text-sm font-semibold text-gray-700 mb-2">
-                          <FaIdCard className="inline mr-2 text-green-600" />
+                          <FaCreditCard className="inline mr-2 text-green-600" />
                           PAN Number *
                         </label>
                         <input
@@ -2016,3 +2016,4 @@ const Mutual_funds = ({ isPopupMode = false, onPopupClose }) => {
 };
 
 export default Mutual_funds;
+

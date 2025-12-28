@@ -2625,3 +2625,4 @@ const Personal_loan = ({ isPopupMode = false, onPopupClose }) => {
 };
 
 export default Personal_loan;
+

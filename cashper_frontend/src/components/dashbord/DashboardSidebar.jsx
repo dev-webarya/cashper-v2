@@ -196,3 +196,4 @@ const DashboardSidebar = ({ isOpen, activeView, setActiveView, toggleSidebar }) 
   );
 };
 export default DashboardSidebar;
+

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { FaCheckCircle, FaCalculator, FaUsers, FaFileAlt, FaChartLine, FaShieldAlt } from 'react-icons/fa';
-import { CheckCircle, FileText, IdCard, Home, TrendingUp, Target, Building, Users, Award, X, Phone, Mail, ArrowLeft, ArrowRight, Upload, AlertCircle } from 'lucide-react';
+import { CheckCircle, FileText, CreditCard, Home, TrendingUp, Target, Building, Users, Award, X, Phone, Mail, ArrowLeft, ArrowRight, Upload, AlertCircle } from 'lucide-react';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import { submitPayrollServices } from '../../services/businessServicesApi';
@@ -1019,7 +1019,7 @@ const PayrollServices = ({ isPopupMode = false, onPopupClose }) => {
                   'Loan and advance details'
                 ].map((doc, index) => (
                   <li key={index} className="flex items-start text-gray-700 text-sm sm:text-base">
-                    <IdCard className="w-5 h-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
+                    <CreditCard className="w-5 h-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
                     <span>{doc}</span>
                   </li>
                 ))}
@@ -1110,7 +1110,7 @@ const PayrollServices = ({ isPopupMode = false, onPopupClose }) => {
                   {currentStep === 1 && (
                     <div className="space-y-6">
                       <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                        <IdCard className="w-7 h-7 text-green-600" />
+                        <CreditCard className="w-7 h-7 text-green-600" />
                         Personal & Company Information
                       </h3>
 
@@ -1607,3 +1607,4 @@ const PayrollServices = ({ isPopupMode = false, onPopupClose }) => {
 };
 
 export default PayrollServices;
+

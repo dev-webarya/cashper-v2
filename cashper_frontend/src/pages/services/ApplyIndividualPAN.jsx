@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { FaCheckCircle, FaIdCard, FaUserShield, FaClock, FaDownload, FaShieldAlt, FaUser, FaEnvelope, FaPhone, FaMapMarkerAlt, FaHome, FaCalendar } from 'react-icons/fa';
-import { CheckCircle, FileText, IdCard, Clock, Award, Target, X, Phone, Mail, Upload, AlertCircle, User, IdCard as IdCardIcon } from 'lucide-react';
+import { FaCheckCircle, FaCreditCard, FaUserShield, FaClock, FaDownload, FaShieldAlt, FaUser, FaEnvelope, FaPhone, FaMapMarkerAlt, FaHome, FaCalendar } from 'react-icons/fa';
+import { CheckCircle, FileText, CreditCard, Clock, Award, Target, X, Phone, Mail, Upload, AlertCircle, User, CreditCard as IdCardIcon } from 'lucide-react';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import { submitIndividualPANApplication } from '../../services/retailServicesApi';
@@ -371,7 +371,7 @@ const ApplyIndividualPAN = ({ isPopupMode = false, onPopupClose = null }) => {
 
               <div className="bg-white rounded-xl sm:rounded-2xl p-6 md:p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100">
                 <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-green-600 to-green-700 rounded-full flex items-center justify-center">
-                  <FaIdCard className="text-3xl text-white" />
+                  <FaCreditCard className="text-3xl text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 text-center mb-3">Universal ID</h3>
                 <p className="text-gray-600 text-center">Acts as proof of identity for all tax-related and financial matters</p>
@@ -445,7 +445,7 @@ const ApplyIndividualPAN = ({ isPopupMode = false, onPopupClose = null }) => {
               <div className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
                 <div className="flex items-start gap-4">
                   <div className="bg-green-600 text-white p-3 rounded-xl">
-                    <IdCard className="w-6 h-6" />
+                    <CreditCard className="w-6 h-6" />
                   </div>
                   <div className="flex-1">
                     <h3 className="text-xl font-bold text-gray-900 mb-2">Proof of Identity</h3>
@@ -572,7 +572,7 @@ const ApplyIndividualPAN = ({ isPopupMode = false, onPopupClose = null }) => {
                   {currentStep === 2 && (
                     <div className="space-y-5">
                       <h3 className="text-xl font-bold text-gray-900 mb-4">Identity Details</h3>
-                      <div><label className="block text-sm font-medium text-gray-700 mb-1">Aadhaar Number *</label><div className="relative"><IdCard className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" /><input type="text" name="aadhaarNumber" value={applicationForm.aadhaarNumber} onChange={handleApplicationChange} onBlur={() => handleBlur('aadhaarNumber')} className={`w-full pl-10 pr-4 py-3 border-2 rounded-lg ${errors.aadhaarNumber ? 'border-red-500' : 'border-gray-200 focus:border-green-500'}`} placeholder="12-digit Aadhaar number" maxLength="12" /></div>{errors.aadhaarNumber && <p className="mt-1 text-sm text-red-600 flex items-center"><span className="mr-1">⚠</span>{errors.aadhaarNumber}</p>}</div>
+                      <div><label className="block text-sm font-medium text-gray-700 mb-1">Aadhaar Number *</label><div className="relative"><CreditCard className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" /><input type="text" name="aadhaarNumber" value={applicationForm.aadhaarNumber} onChange={handleApplicationChange} onBlur={() => handleBlur('aadhaarNumber')} className={`w-full pl-10 pr-4 py-3 border-2 rounded-lg ${errors.aadhaarNumber ? 'border-red-500' : 'border-gray-200 focus:border-green-500'}`} placeholder="12-digit Aadhaar number" maxLength="12" /></div>{errors.aadhaarNumber && <p className="mt-1 text-sm text-red-600 flex items-center"><span className="mr-1">⚠</span>{errors.aadhaarNumber}</p>}</div>
                       <div><label className="block text-sm font-medium text-gray-700 mb-1">Gender *</label><select name="gender" value={applicationForm.gender} onChange={handleApplicationChange} onBlur={() => handleBlur('gender')} className={`w-full px-4 py-3 border-2 rounded-lg ${errors.gender ? 'border-red-500' : 'border-gray-200 focus:border-green-500'}`}><option value="">Select Gender</option><option value="Male">Male</option><option value="Female">Female</option><option value="Other">Other</option></select>{errors.gender && <p className="mt-1 text-sm text-red-600 flex items-center"><span className="mr-1">⚠</span>{errors.gender}</p>}</div>
                       <div><label className="block text-sm font-medium text-gray-700 mb-1">Category *</label><select name="category" value={applicationForm.category} onChange={handleApplicationChange} onBlur={() => handleBlur('category')} className={`w-full px-4 py-3 border-2 rounded-lg ${errors.category ? 'border-red-500' : 'border-gray-200 focus:border-green-500'}`}><option value="">Select Category</option><option value="Individual">Individual</option><option value="Resident">Resident Individual</option><option value="NRI">Non-Resident Indian (NRI)</option></select>{errors.category && <p className="mt-1 text-sm text-red-600 flex items-center"><span className="mr-1">⚠</span>{errors.category}</p>}</div>
                       <div><label className="block text-sm font-medium text-gray-700 mb-1">Application Type *</label><select name="applicationType" value={applicationForm.applicationType} onChange={handleApplicationChange} onBlur={() => handleBlur('applicationType')} className={`w-full px-4 py-3 border-2 rounded-lg ${errors.applicationType ? 'border-red-500' : 'border-gray-200 focus:border-green-500'}`}><option value="">Select Type</option><option value="New">New PAN Card</option><option value="Reprint">Reprint of PAN Card</option><option value="Changes">Changes/Corrections in PAN</option></select>{errors.applicationType && <p className="mt-1 text-sm text-red-600 flex items-center"><span className="mr-1">⚠</span>{errors.applicationType}</p>}</div>
@@ -689,3 +689,4 @@ const ApplyIndividualPAN = ({ isPopupMode = false, onPopupClose = null }) => {
 };
 
 export default ApplyIndividualPAN;
+

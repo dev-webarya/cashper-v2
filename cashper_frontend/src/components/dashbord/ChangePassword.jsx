@@ -293,3 +293,4 @@ const ChangePassword = ({ setActiveView }) => {
 };
 
 export default ChangePassword;
+

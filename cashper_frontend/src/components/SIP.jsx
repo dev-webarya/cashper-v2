@@ -25,7 +25,7 @@ import {
   FaPhone,
   FaEnvelope,
   FaMapMarkerAlt,
-  FaIdCard,
+  FaCreditCard,
   FaHome,
   FaCamera,
   FaFileAlt,
@@ -559,7 +559,7 @@ const SIP = ({ isPopupMode = false, onPopupClose }) => {
     {
       title: "PAN Card",
       description: "Mandatory for all SIP investments as per KYC norms",
-      icon: <FaIdCard />,
+      icon: <FaCreditCard />,
       items: ["Original PAN card or verified copy", "Must be valid and active"]
     },
     {
@@ -1278,7 +1278,7 @@ const SIP = ({ isPopupMode = false, onPopupClose }) => {
 
                       <div>
                         <label className="block text-sm font-semibold text-gray-700 mb-2">
-                          <FaIdCard className="inline mr-2 text-green-600" />
+                          <FaCreditCard className="inline mr-2 text-green-600" />
                           PAN Number *
                         </label>
                         <input
@@ -1711,3 +1711,4 @@ const SIP = ({ isPopupMode = false, onPopupClose }) => {
 };
 
 export default SIP;
+

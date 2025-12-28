@@ -373,3 +373,4 @@ const AllNotifications = () => {
   );
 };
 export default AllNotifications;
+

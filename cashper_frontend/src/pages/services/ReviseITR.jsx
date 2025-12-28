@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { FaCheckCircle, FaFileAlt, FaCalculator, FaChartLine, FaPiggyBank, FaUser, FaEnvelope, FaPhone, FaIdCard, FaMapMarkerAlt, FaHome, FaCalendar } from 'react-icons/fa';
-import { CheckCircle, FileText, TrendingUp, Target, Award, Shield, X, Phone, Mail, Upload, AlertCircle, User, IdCard as IdCardIcon } from 'lucide-react';
+import { FaCheckCircle, FaFileAlt, FaCalculator, FaChartLine, FaPiggyBank, FaUser, FaEnvelope, FaPhone, FaCreditCard, FaMapMarkerAlt, FaHome, FaCalendar } from 'react-icons/fa';
+import { CheckCircle, FileText, TrendingUp, Target, Award, Shield, X, Phone, Mail, Upload, AlertCircle, User, CreditCard as IdCardIcon } from 'lucide-react';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import { submitITRRevisionApplication } from '../../services/retailServicesApi';
@@ -744,7 +744,7 @@ const ReviseITR = ({ isPopupMode = false, onPopupClose = null }) => {
                     <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-2">PAN Number <span className="text-red-500">*</span></label>
                       <div className="relative">
-                        <FaIdCard className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                        <FaCreditCard className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
                         <input type="text" name="panNumber" value={applicationForm.panNumber} onChange={handleApplicationChange} onBlur={() => handleBlur('panNumber')} maxLength="10"
                           className={`w-full pl-10 pr-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 transition-all uppercase ${errors.panNumber ? 'border-red-500 focus:border-red-600 focus:ring-red-200' : 'border-gray-200 focus:border-green-600 focus:ring-green-200'}`}
                           placeholder="ABCDE1234F" />
@@ -990,3 +990,4 @@ const ReviseITR = ({ isPopupMode = false, onPopupClose = null }) => {
 };
 
 export default ReviseITR;
+

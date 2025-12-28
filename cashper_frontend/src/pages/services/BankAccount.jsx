@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { FaUniversity, FaMobileAlt, FaShieldAlt, FaGift, FaUser, FaEnvelope, FaPhone, FaIdCard, FaMapMarkerAlt, FaHome, FaCheckCircle } from 'react-icons/fa';
+import { FaUniversity, FaMobileAlt, FaShieldAlt, FaGift, FaUser, FaEnvelope, FaPhone, FaCreditCard, FaMapMarkerAlt, FaHome, FaCheckCircle } from 'react-icons/fa';
 import { Upload, X, CheckCircle } from 'lucide-react';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
@@ -505,7 +505,7 @@ const BankAccount = ({ isPopupMode = false, onPopupClose = null }) => {
                     PAN Number <span className="text-red-500">*</span>
                   </label>
                   <div className="relative">
-                    <FaIdCard className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                    <FaCreditCard className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                     <input
                       type="text"
                       name="panNumber"
@@ -534,7 +534,7 @@ const BankAccount = ({ isPopupMode = false, onPopupClose = null }) => {
                     Aadhaar Number <span className="text-red-500">*</span>
                   </label>
                   <div className="relative">
-                    <FaIdCard className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                    <FaCreditCard className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                     <input
                       type="text"
                       name="aadhaarNumber"
@@ -1193,3 +1193,4 @@ const BankAccount = ({ isPopupMode = false, onPopupClose = null }) => {
 };
 
 export default BankAccount;
+

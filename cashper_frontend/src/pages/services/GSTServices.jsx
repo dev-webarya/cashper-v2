@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { FaFileInvoice, FaPercentage, FaMoneyBillWave, FaCalculator, FaCheckCircle, FaClock, FaBuilding, FaChartLine, FaUser, FaEnvelope, FaPhone, FaIdCard, FaMapMarkerAlt, FaHome } from 'react-icons/fa';
-import { CheckCircle, FileText, X, Phone, Mail, Upload, AlertCircle, User, IdCard } from 'lucide-react';
+import { FaFileInvoice, FaPercentage, FaMoneyBillWave, FaCalculator, FaCheckCircle, FaClock, FaBuilding, FaChartLine, FaUser, FaEnvelope, FaPhone, FaCreditCard, FaMapMarkerAlt, FaHome } from 'react-icons/fa';
+import { CheckCircle, FileText, X, Phone, Mail, Upload, AlertCircle, User, CreditCard } from 'lucide-react';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import { submitGSTServices } from '../../services/businessServicesApi';
@@ -429,7 +429,7 @@ const GSTServices = ({ isPopupMode = false, onPopupClose }) => {
 
                     <div>
                       <label className="flex items-center text-sm font-semibold text-gray-700 mb-2">
-                        <FaIdCard className="mr-2 text-green-600" /> PAN Number *
+                        <FaCreditCard className="mr-2 text-green-600" /> PAN Number *
                       </label>
                       <input
                         type="text"
@@ -481,7 +481,7 @@ const GSTServices = ({ isPopupMode = false, onPopupClose }) => {
 
                     <div>
                       <label className="flex items-center text-sm font-semibold text-gray-700 mb-2">
-                        <IdCard className="mr-2 text-green-600" /> GSTIN (if already registered)
+                        <CreditCard className="mr-2 text-green-600" /> GSTIN (if already registered)
                       </label>
                       <input
                         type="text"
@@ -1181,7 +1181,7 @@ const GSTServices = ({ isPopupMode = false, onPopupClose }) => {
 
                       <div>
                         <label className="flex items-center text-sm font-semibold text-gray-700 mb-2">
-                          <FaIdCard className="mr-2 text-green-600" /> PAN Number *
+                          <FaCreditCard className="mr-2 text-green-600" /> PAN Number *
                         </label>
                         <input
                           type="text"
@@ -1233,7 +1233,7 @@ const GSTServices = ({ isPopupMode = false, onPopupClose }) => {
 
                       <div>
                         <label className="flex items-center text-sm font-semibold text-gray-700 mb-2">
-                          <IdCard className="mr-2 text-green-600" /> GSTIN (if already registered)
+                          <CreditCard className="mr-2 text-green-600" /> GSTIN (if already registered)
                         </label>
                         <input
                           type="text"
@@ -1625,3 +1625,4 @@ const GSTServices = ({ isPopupMode = false, onPopupClose }) => {
 };
 
 export default GSTServices;
+

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { FaCheckCircle, FaBuilding, FaFileAlt, FaUsers, FaCertificate, FaHandshake, FaUser, FaEnvelope, FaPhone, FaIdCard, FaMapMarkerAlt, FaHome } from 'react-icons/fa';
-import { CheckCircle, FileText, Building, Users, Award, Shield, X, Phone, Mail, Upload, AlertCircle, User, IdCard } from 'lucide-react';
+import { FaCheckCircle, FaBuilding, FaFileAlt, FaUsers, FaCertificate, FaHandshake, FaUser, FaEnvelope, FaPhone, FaCreditCard, FaMapMarkerAlt, FaHome } from 'react-icons/fa';
+import { CheckCircle, FileText, Building, Users, Award, Shield, X, Phone, Mail, Upload, AlertCircle, User, CreditCard } from 'lucide-react';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import { submitCompanyRegistration } from '../../services/businessServicesApi';
@@ -910,7 +910,7 @@ const RegisterCompany = ({ isPopupMode = false, onPopupClose }) => {
 
                   <div>
                     <label className="flex items-center text-sm font-semibold text-gray-700 mb-2">
-                      <FaIdCard className="mr-2 text-green-600" /> PAN Number *
+                      <FaCreditCard className="mr-2 text-green-600" /> PAN Number *
                     </label>
                     <input
                       type="text"
@@ -962,7 +962,7 @@ const RegisterCompany = ({ isPopupMode = false, onPopupClose }) => {
 
                   <div>
                     <label className="flex items-center text-sm font-semibold text-gray-700 mb-2">
-                      <IdCard className="mr-2 text-green-600" /> Company Type *
+                      <CreditCard className="mr-2 text-green-600" /> Company Type *
                     </label>
                     <select
                       name="companyType"
@@ -1358,3 +1358,4 @@ const RegisterCompany = ({ isPopupMode = false, onPopupClose }) => {
 };
 
 export default RegisterCompany;
+

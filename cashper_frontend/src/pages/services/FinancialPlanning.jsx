@@ -12,7 +12,7 @@ import {
   FaUser,
   FaEnvelope,
   FaPhone,
-  FaIdCard,
+  FaCreditCard,
   FaMapMarkerAlt,
   FaCalendar,
   FaCheckCircle,
@@ -37,7 +37,7 @@ import {
   Calendar,
   Home,
   MapPin,
-  IdCard,
+  CreditCard,
   CreditCard,
   TrendingUp,
   Target,
@@ -551,7 +551,7 @@ const FinancialPlanning = ({ isPopupMode = false, onPopupClose = null }) => {
               <div className="bg-gradient-to-br from-green-50 to-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-green-100">
                 <div className="flex items-start gap-4">
                   <div className="bg-green-600 text-white p-3 rounded-xl">
-                    <IdCard className="w-6 h-6" />
+                    <CreditCard className="w-6 h-6" />
                   </div>
                   <div className="flex-1">
                     <h3 className="text-xl font-bold text-gray-900 mb-2">Identity Proof</h3>
@@ -1090,7 +1090,7 @@ const FinancialPlanning = ({ isPopupMode = false, onPopupClose = null }) => {
                                 PAN Number <span className="text-red-500">*</span>
                               </label>
                               <div className="relative">
-                                <IdCard className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+                                <CreditCard className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
                                 <input
                                   type="text"
                                   name="panNumber"
@@ -1444,3 +1444,4 @@ const FinancialPlanning = ({ isPopupMode = false, onPopupClose = null }) => {
 };
 
 export default FinancialPlanning;
+

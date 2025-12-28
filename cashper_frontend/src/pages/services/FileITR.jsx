@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { FaFileInvoice, FaCalculator, FaUserShield, FaCheckCircle, FaClock, FaChartLine, FaHandHoldingUsd, FaLaptop, FaUser, FaEnvelope, FaPhone, FaIdCard, FaMapMarkerAlt, FaHome } from 'react-icons/fa';
-import { Upload, X, CheckCircle, FileText, AlertCircle, User, Phone, Mail, IdCard, TrendingUp } from 'lucide-react';
+import { FaFileInvoice, FaCalculator, FaUserShield, FaCheckCircle, FaClock, FaChartLine, FaHandHoldingUsd, FaLaptop, FaUser, FaEnvelope, FaPhone, FaCreditCard, FaMapMarkerAlt, FaHome } from 'react-icons/fa';
+import { Upload, X, CheckCircle, FileText, AlertCircle, User, Phone, Mail, CreditCard, TrendingUp } from 'lucide-react';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import { submitITRFilingApplication } from '../../services/retailServicesApi';
@@ -695,7 +695,7 @@ const FileITR = ({ isPopupMode = false, onPopupClose = null }) => {
               <div className="bg-gradient-to-br from-green-50 to-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-green-100">
                 <div className="flex items-start gap-4">
                   <div className="bg-green-600 text-white p-3 rounded-xl">
-                    <IdCard className="w-6 h-6" />
+                    <CreditCard className="w-6 h-6" />
                   </div>
                   <div className="flex-1">
                     <h3 className="text-xl font-bold text-gray-900 mb-2">Identity Proof</h3>
@@ -890,7 +890,7 @@ const FileITR = ({ isPopupMode = false, onPopupClose = null }) => {
 
                       <div>
                         <label className="block text-sm font-semibold text-gray-700 mb-2">
-                          <FaIdCard className="inline mr-2 text-green-600" />
+                          <FaCreditCard className="inline mr-2 text-green-600" />
                           PAN Number *
                         </label>
                         <input
@@ -914,7 +914,7 @@ const FileITR = ({ isPopupMode = false, onPopupClose = null }) => {
 
                       <div>
                         <label className="block text-sm font-semibold text-gray-700 mb-2">
-                          <FaIdCard className="inline mr-2 text-green-600" />
+                          <FaCreditCard className="inline mr-2 text-green-600" />
                           Aadhaar Number *
                         </label>
                         <input
@@ -1499,3 +1499,4 @@ const FileITR = ({ isPopupMode = false, onPopupClose = null }) => {
 };
 
 export default FileITR;
+

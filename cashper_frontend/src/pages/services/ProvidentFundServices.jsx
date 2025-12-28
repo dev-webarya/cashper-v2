@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { FaCheckCircle, FaShieldAlt, FaUsers, FaFileAlt, FaBalanceScale, FaChartLine } from 'react-icons/fa';
-import { CheckCircle, FileText, IdCard, Home, Building, Users, Award, X, Phone, Mail, ArrowLeft, ArrowRight, Upload, AlertCircle } from 'lucide-react';
+import { CheckCircle, FileText, CreditCard, Home, Building, Users, Award, X, Phone, Mail, ArrowLeft, ArrowRight, Upload, AlertCircle } from 'lucide-react';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import { submitProvidentFundServices } from '../../services/businessServicesApi';
@@ -1026,7 +1026,7 @@ const ProvidentFundServices = ({ isPopupMode = false, onPopupClose }) => {
                   'Salary structure details'
                 ].map((doc, index) => (
                   <li key={index} className="flex items-start text-gray-700 text-sm sm:text-base">
-                    <IdCard className="w-5 h-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
+                    <CreditCard className="w-5 h-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
                     <span>{doc}</span>
                   </li>
                 ))}
@@ -1517,3 +1517,4 @@ const ProvidentFundServices = ({ isPopupMode = false, onPopupClose }) => {
 };
 
 export default ProvidentFundServices;
+

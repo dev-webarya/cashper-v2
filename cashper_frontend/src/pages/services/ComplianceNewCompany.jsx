@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { FaCheckCircle, FaShieldAlt, FaCalendarCheck, FaFileAlt, FaClock, FaHandsHelping, FaCalculator, FaUser, FaEnvelope, FaPhone, FaIdCard, FaMapMarkerAlt, FaHome, FaBuilding, FaCalendarAlt } from 'react-icons/fa';
-import { CheckCircle, FileText, Building, Target, Award, X, Phone, Mail, Upload, AlertCircle, User, IdCard } from 'lucide-react';
+import { FaCheckCircle, FaShieldAlt, FaCalendarCheck, FaFileAlt, FaClock, FaHandsHelping, FaCalculator, FaUser, FaEnvelope, FaPhone, FaCreditCard, FaMapMarkerAlt, FaHome, FaBuilding, FaCalendarAlt } from 'react-icons/fa';
+import { CheckCircle, FileText, Building, Target, Award, X, Phone, Mail, Upload, AlertCircle, User, CreditCard } from 'lucide-react';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import { submitCompanyCompliance } from '../../services/businessServicesApi';
@@ -853,7 +853,7 @@ const ComplianceNewCompany = ({ isPopupMode = false, onPopupClose }) => {
 
                     <div>
                       <label className="flex items-center text-sm font-semibold text-gray-700 mb-2">
-                        <FaIdCard className="mr-2 text-green-600" /> PAN Number *
+                        <FaCreditCard className="mr-2 text-green-600" /> PAN Number *
                       </label>
                       <input
                         type="text"
@@ -905,7 +905,7 @@ const ComplianceNewCompany = ({ isPopupMode = false, onPopupClose }) => {
 
                     <div>
                       <label className="flex items-center text-sm font-semibold text-gray-700 mb-2">
-                        <IdCard className="mr-2 text-green-600" /> CIN Number *
+                        <CreditCard className="mr-2 text-green-600" /> CIN Number *
                       </label>
                       <input
                         type="text"
@@ -1303,3 +1303,4 @@ const ComplianceNewCompany = ({ isPopupMode = false, onPopupClose }) => {
 };
 
 export default ComplianceNewCompany;
+

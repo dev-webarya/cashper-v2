@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { FaCheckCircle, FaBalanceScale, FaGavel, FaHandshake, FaFileContract, FaShieldAlt } from 'react-icons/fa';
-import { CheckCircle, FileText, IdCard, Home, Building, Users, Award, Scale, X, Phone, Mail, ArrowLeft, ArrowRight, Upload, AlertCircle } from 'lucide-react';
+import { CheckCircle, FileText, CreditCard, Home, Building, Users, Award, Scale, X, Phone, Mail, ArrowLeft, ArrowRight, Upload, AlertCircle } from 'lucide-react';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import { submitLegalAdvice } from '../../services/businessServicesApi';
@@ -1243,3 +1243,4 @@ const LegalAdvice = ({ isPopupMode = false, onPopupClose }) => {
 };
 
 export default LegalAdvice;
+

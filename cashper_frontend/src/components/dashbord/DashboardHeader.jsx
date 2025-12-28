@@ -403,3 +403,4 @@ const DashboardHeader = ({ toggleSidebar, setActiveView, userData }) => {
 };
 
 export default DashboardHeader;
+

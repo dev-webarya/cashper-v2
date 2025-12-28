@@ -17,7 +17,7 @@ import {
   Users,
   Home,
   MapPin,
-  IdCard,
+  CreditCard,
   CreditCard,
   Shield,
   Heart,
@@ -800,7 +800,7 @@ const Term_Insurance = ({ isPopupMode = false, onPopupClose }) => {
             <div className="bg-gradient-to-br from-blue-50 to-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-blue-100">
               <div className="flex items-start gap-4">
                 <div className="bg-green-600 text-white p-3 rounded-xl">
-                  <IdCard className="w-6 h-6" />
+                  <CreditCard className="w-6 h-6" />
                 </div>
                 <div className="flex-1">
                   <h3 className="text-xl font-bold text-gray-900 mb-2">Identity Proof</h3>
@@ -1380,7 +1380,7 @@ const Term_Insurance = ({ isPopupMode = false, onPopupClose }) => {
                   
                   <div className="grid sm:grid-cols-2 gap-6">
                     {[
-                      { key: 'aadhar', label: 'Aadhar Card', icon: <IdCard className="w-12 h-12" />, accept: '.pdf,.jpg,.jpeg,.png', size: '5MB' },
+                      { key: 'aadhar', label: 'Aadhar Card', icon: <CreditCard className="w-12 h-12" />, accept: '.pdf,.jpg,.jpeg,.png', size: '5MB' },
                       { key: 'pan', label: 'PAN Card', icon: <CreditCard className="w-12 h-12" />, accept: '.pdf,.jpg,.jpeg,.png', size: '5MB' },
                       { key: 'photo', label: 'Passport Size Photo', icon: <User className="w-12 h-12" />, accept: '.jpg,.jpeg,.png', size: '2MB' },
                       { key: 'incomeProof', label: 'Income Proof', icon: <IndianRupee className="w-12 h-12" />, accept: '.pdf,.jpg,.jpeg,.png', size: '10MB' },
@@ -1621,4 +1621,5 @@ const Term_Insurance = ({ isPopupMode = false, onPopupClose }) => {
 };
 
 export default Term_Insurance;
+
 

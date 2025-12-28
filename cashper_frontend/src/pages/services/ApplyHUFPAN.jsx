@@ -3,8 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
-import { FaCheckCircle, FaUsers, FaPiggyBank, FaFileAlt, FaShieldAlt, FaCalculator, FaUser, FaEnvelope, FaPhone, FaIdCard, FaMapMarkerAlt, FaHome as FaHomeIcon, FaCalendar } from 'react-icons/fa';
-import { CheckCircle, FileText, IdCard, Home, TrendingUp, Target, X, Phone, Mail, Upload, AlertCircle, User } from 'lucide-react';
+import { FaCheckCircle, FaUsers, FaPiggyBank, FaFileAlt, FaShieldAlt, FaCalculator, FaUser, FaEnvelope, FaPhone, FaCreditCard, FaMapMarkerAlt, FaHome as FaHomeIcon, FaCalendar } from 'react-icons/fa';
+import { CheckCircle, FileText, CreditCard, Home, TrendingUp, Target, X, Phone, Mail, Upload, AlertCircle, User } from 'lucide-react';
 import { submitHUFPANApplication } from '../../services/retailServicesApi';
 
 const ApplyHUFPAN = ({ isPopupMode = false, onPopupClose = null }) => {
@@ -426,7 +426,7 @@ const ApplyHUFPAN = ({ isPopupMode = false, onPopupClose = null }) => {
               <div className="bg-gradient-to-br from-green-50 to-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-green-100">
                 <div className="flex items-start gap-4">
                   <div className="bg-green-600 text-white p-3 rounded-xl">
-                    <IdCard className="w-6 h-6" />
+                    <CreditCard className="w-6 h-6" />
                   </div>
                   <div className="flex-1">
                     <h3 className="text-xl font-bold text-gray-900 mb-2">Karta's Documents</h3>
@@ -534,7 +534,7 @@ const ApplyHUFPAN = ({ isPopupMode = false, onPopupClose = null }) => {
                       <div><label className="block text-sm font-medium text-gray-700 mb-1">Karta Name *</label><div className="relative"><FaUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" /><input type="text" name="kartaName" value={applicationForm.kartaName} onChange={handleApplicationChange} onBlur={() => handleBlur('kartaName')} className={`w-full pl-10 pr-4 py-3 border-2 rounded-lg ${errors.kartaName ? 'border-red-500' : 'border-gray-200 focus:border-green-500'}`} placeholder="Enter karta's full name" /></div>{errors.kartaName && <p className="mt-1 text-sm text-red-600 flex items-center"><span className="mr-1">⚠</span>{errors.kartaName}</p>}</div>
                       <div><label className="block text-sm font-medium text-gray-700 mb-1">Email Address *</label><div className="relative"><FaEnvelope className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" /><input type="email" name="email" value={applicationForm.email} onChange={handleApplicationChange} onBlur={() => handleBlur('email')} className={`w-full pl-10 pr-4 py-3 border-2 rounded-lg ${errors.email ? 'border-red-500' : 'border-gray-200 focus:border-green-500'}`} placeholder="karta.email@example.com" /></div>{errors.email && <p className="mt-1 text-sm text-red-600 flex items-center"><span className="mr-1">⚠</span>{errors.email}</p>}</div>
                       <div><label className="block text-sm font-medium text-gray-700 mb-1">Phone Number *</label><div className="relative"><FaPhone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" /><input type="tel" name="phone" value={applicationForm.phone} onChange={handleApplicationChange} onBlur={() => handleBlur('phone')} className={`w-full pl-10 pr-4 py-3 border-2 rounded-lg ${errors.phone ? 'border-red-500' : 'border-gray-200 focus:border-green-500'}`} placeholder="10-digit mobile number" /></div>{errors.phone && <p className="mt-1 text-sm text-red-600 flex items-center"><span className="mr-1">⚠</span>{errors.phone}</p>}</div>
-                      <div><label className="block text-sm font-medium text-gray-700 mb-1">Karta PAN Number *</label><div className="relative"><FaIdCard className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" /><input type="text" name="kartaPAN" value={applicationForm.kartaPAN} onChange={handleApplicationChange} onBlur={() => handleBlur('kartaPAN')} className={`w-full pl-10 pr-4 py-3 border-2 rounded-lg uppercase ${errors.kartaPAN ? 'border-red-500' : 'border-gray-200 focus:border-green-500'}`} placeholder="ABCDE1234F" maxLength="10" /></div>{errors.kartaPAN && <p className="mt-1 text-sm text-red-600 flex items-center"><span className="mr-1">⚠</span>{errors.kartaPAN}</p>}</div>
+                      <div><label className="block text-sm font-medium text-gray-700 mb-1">Karta PAN Number *</label><div className="relative"><FaCreditCard className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" /><input type="text" name="kartaPAN" value={applicationForm.kartaPAN} onChange={handleApplicationChange} onBlur={() => handleBlur('kartaPAN')} className={`w-full pl-10 pr-4 py-3 border-2 rounded-lg uppercase ${errors.kartaPAN ? 'border-red-500' : 'border-gray-200 focus:border-green-500'}`} placeholder="ABCDE1234F" maxLength="10" /></div>{errors.kartaPAN && <p className="mt-1 text-sm text-red-600 flex items-center"><span className="mr-1">⚠</span>{errors.kartaPAN}</p>}</div>
                     </div>
                   )}
 
@@ -659,3 +659,4 @@ const ApplyHUFPAN = ({ isPopupMode = false, onPopupClose = null }) => {
 };
 
 export default ApplyHUFPAN;
+

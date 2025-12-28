@@ -2156,3 +2156,4 @@ const Short_Term_Loan = ({ isPopupMode = false, onPopupClose }) => {
 };
 
 export default Short_Term_Loan;
+

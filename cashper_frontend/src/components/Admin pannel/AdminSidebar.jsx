@@ -133,3 +133,4 @@ const AdminSidebar = ({ isOpen, activeView, setActiveView, toggleSidebar }) => {
 };
 
 export default AdminSidebar;
+

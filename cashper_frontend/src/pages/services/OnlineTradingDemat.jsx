@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { FaChartLine, FaMobileAlt, FaShieldAlt, FaBolt, FaUser, FaEnvelope, FaPhone, FaIdCard, FaMapMarkerAlt, FaHome, FaCheckCircle } from 'react-icons/fa';
+import { FaChartLine, FaMobileAlt, FaShieldAlt, FaBolt, FaUser, FaEnvelope, FaPhone, FaCreditCard, FaMapMarkerAlt, FaHome, FaCheckCircle } from 'react-icons/fa';
 import { Upload, X, CheckCircle } from 'lucide-react';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
@@ -696,7 +696,7 @@ const OnlineTradingDemat = ({ isPopupMode = false, onPopupClose = null }) => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                     <div>
                       <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">
-                        <FaIdCard className="inline mr-1.5 sm:mr-2 text-green-600" />
+                        <FaCreditCard className="inline mr-1.5 sm:mr-2 text-green-600" />
                         PAN Number *
                       </label>
                       <input
@@ -722,7 +722,7 @@ const OnlineTradingDemat = ({ isPopupMode = false, onPopupClose = null }) => {
 
                     <div>
                       <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">
-                        <FaIdCard className="inline mr-1.5 sm:mr-2 text-green-600" />
+                        <FaCreditCard className="inline mr-1.5 sm:mr-2 text-green-600" />
                         Aadhaar Number *
                       </label>
                       <input
@@ -1268,3 +1268,4 @@ const OnlineTradingDemat = ({ isPopupMode = false, onPopupClose = null }) => {
   );
 };
 export default OnlineTradingDemat;
+
