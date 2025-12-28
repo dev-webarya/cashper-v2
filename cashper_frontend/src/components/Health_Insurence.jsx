@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import healthInsuranceApi from '../services/healthInsuranceApi';
-import { 
-  FaHospital, 
-  FaAmbulance, 
+import {
+  FaHospital,
+  FaAmbulance,
   FaUserMd,
   FaRupeeSign,
   FaHeartbeat,
@@ -17,11 +17,11 @@ import {
   FaClipboardCheck,
   FaBriefcaseMedical
 } from 'react-icons/fa';
-import { 
-  Upload, 
-  X, 
-  CheckCircle, 
-  ArrowRight, 
+import {
+  Upload,
+  X,
+  CheckCircle,
+  ArrowRight,
   ArrowLeft,
   FileText,
   AlertCircle,
@@ -32,7 +32,7 @@ import {
   Users,
   Home,
   MapPin,
-  IdCard,
+  BadgeCheck,
   CreditCard
 } from 'lucide-react';
 import Navbar from './Navbar';
@@ -40,7 +40,7 @@ import Footer from './Footer';
 
 const Health_Insurence = ({ isPopupMode = false, onPopupClose }) => {
   const navigate = useNavigate();
-  
+
   // Handle navigation to contact page with scroll to hero section
   const handleContactNavigation = () => {
     navigate('/contact');
@@ -51,7 +51,7 @@ const Health_Insurence = ({ isPopupMode = false, onPopupClose }) => {
       });
     }, 100);
   };
-  
+
   // Hero form state (separate from application form)
   const [heroFormData, setHeroFormData] = useState({
     name: '',
@@ -63,7 +63,7 @@ const Health_Insurence = ({ isPopupMode = false, onPopupClose }) => {
   });
 
   const [isSubmittingHero, setIsSubmittingHero] = useState(false);
-  
+
   // Application form state
   const [formData, setFormData] = useState({
     name: '',
@@ -105,7 +105,7 @@ const Health_Insurence = ({ isPopupMode = false, onPopupClose }) => {
 
   const handleHeroFormSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Validation
     if (!heroFormData.name.trim()) {
       toast.error('Please enter your full name');
@@ -140,7 +140,7 @@ const Health_Insurence = ({ isPopupMode = false, onPopupClose }) => {
         familySize: parseInt(heroFormData.familySize)
       });
       toast.success(response.message || 'Thank you! Our advisor will contact you soon.');
-      
+
       // Reset form
       setHeroFormData({
         name: '',
@@ -182,7 +182,7 @@ const Health_Insurence = ({ isPopupMode = false, onPopupClose }) => {
   };
 
   const validateStep = (step) => {
-    switch(step) {
+    switch (step) {
       case 1:
         if (!formData.name || !formData.name.trim()) {
           toast.error('⚠️ Full name is required');
@@ -295,7 +295,7 @@ const Health_Insurence = ({ isPopupMode = false, onPopupClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!validateStep(4)) return;
 
     setIsSubmittingApplication(true);
@@ -319,11 +319,11 @@ const Health_Insurence = ({ isPopupMode = false, onPopupClose }) => {
 
       // Submit application
       const response = await healthInsuranceApi.submitHealthInsuranceApplication(applicationData, documents);
-      
+
       // Show success and move to step 5
       toast.success(response.message || 'Application submitted successfully!');
       setCurrentStep(5);
-      
+
       // Store application number for display
       if (response.applicationNumber) {
         setFormData(prev => ({ ...prev, applicationNumber: response.applicationNumber }));
@@ -395,18 +395,16 @@ const Health_Insurence = ({ isPopupMode = false, onPopupClose }) => {
                 {[1, 2, 3, 4].map((step) => (
                   <React.Fragment key={step}>
                     <div className="flex flex-col items-center flex-1">
-                      <div className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg transition-all duration-300 ${
-                        currentStep === step 
-                          ? 'bg-green-600 text-white shadow-lg scale-110' 
+                      <div className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg transition-all duration-300 ${currentStep === step
+                          ? 'bg-green-600 text-white shadow-lg scale-110'
                           : completedSteps.includes(step)
-                          ? 'bg-green-500 text-white'
-                          : 'bg-gray-200 text-gray-500'
-                      }`}>
+                            ? 'bg-green-500 text-white'
+                            : 'bg-gray-200 text-gray-500'
+                        }`}>
                         {completedSteps.includes(step) ? <FaCheckCircle className="w-6 h-6" /> : step}
                       </div>
-                      <div className={`mt-2 text-xs sm:text-sm font-semibold text-center ${
-                        currentStep === step ? 'text-green-700' : 'text-gray-500'
-                      }`}>
+                      <div className={`mt-2 text-xs sm:text-sm font-semibold text-center ${currentStep === step ? 'text-green-700' : 'text-gray-500'
+                        }`}>
                         {step === 1 && 'Personal'}
                         {step === 2 && 'Coverage'}
                         {step === 3 && 'Address'}
@@ -414,9 +412,8 @@ const Health_Insurence = ({ isPopupMode = false, onPopupClose }) => {
                       </div>
                     </div>
                     {step < 4 && (
-                      <div className={`h-1 flex-1 mx-2 transition-all duration-300 ${
-                        completedSteps.includes(step) ? 'bg-green-500' : 'bg-gray-200'
-                      }`}></div>
+                      <div className={`h-1 flex-1 mx-2 transition-all duration-300 ${completedSteps.includes(step) ? 'bg-green-500' : 'bg-gray-200'
+                        }`}></div>
                     )}
                   </React.Fragment>
                 ))}
@@ -431,7 +428,7 @@ const Health_Insurence = ({ isPopupMode = false, onPopupClose }) => {
                       <User className="w-6 h-6 text-green-600" />
                       Personal Information
                     </h3>
-                    
+
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
                         <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -557,7 +554,7 @@ const Health_Insurence = ({ isPopupMode = false, onPopupClose }) => {
                       <CreditCard className="w-6 h-6 text-green-600" />
                       Coverage Details
                     </h3>
-                    
+
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
                         <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -622,7 +619,7 @@ const Health_Insurence = ({ isPopupMode = false, onPopupClose }) => {
                       <Home className="w-6 h-6 text-green-600" />
                       Address Details
                     </h3>
-                    
+
                     <div className="space-y-4">
                       <div>
                         <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -702,7 +699,7 @@ const Health_Insurence = ({ isPopupMode = false, onPopupClose }) => {
                       <Upload className="w-6 h-6 text-green-600" />
                       Upload Documents
                     </h3>
-                    
+
                     <div className="space-y-4">
                       {/* Aadhar Card */}
                       <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 hover:border-green-500 transition-all">
@@ -858,7 +855,7 @@ const Health_Insurence = ({ isPopupMode = false, onPopupClose }) => {
                       Previous
                     </button>
                   )}
-                  
+
                   {currentStep < 4 ? (
                     <button
                       type="button"
@@ -898,7 +895,7 @@ const Health_Insurence = ({ isPopupMode = false, onPopupClose }) => {
     <>
       <Navbar />
       <div className="w-full overflow-x-hidden bg-white">
-        
+
         {/* Hero Section */}
         <section className="relative pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-6 sm:pb-8 md:pb-10 lg:pb-12 min-h-[500px] sm:min-h-[550px] md:min-h-[580px] lg:h-[600px] bg-cover bg-center bg-no-repeat text-white flex items-center"
           style={{
@@ -919,19 +916,19 @@ const Health_Insurence = ({ isPopupMode = false, onPopupClose }) => {
                   Explore the best family health insurance in India with Cashper. From zero waiting period health insurance policies to comprehensive coverage options, we help you compare health insurance plans in India, understand what's included, and track your Health India claim status—all in one place.
                 </p>
                 <div className="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3 justify-center md:justify-start pt-2">
-                  <button 
+                  <button
                     onClick={scrollToApplyForm}
                     className="bg-white text-green-700 px-4 sm:px-5 md:px-6 lg:px-7 py-2 sm:py-2.5 md:py-3 rounded-xl font-semibold hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-xs sm:text-sm md:text-base">
                     Compare Plans Now
                   </button>
-                  <button 
+                  <button
                     onClick={scrollToApplyForm}
                     className="border-2 border-white text-white px-4 sm:px-5 md:px-6 lg:px-7 py-2 sm:py-2.5 md:py-3 rounded-xl font-semibold hover:bg-white hover:text-green-700 transition-all duration-300 text-xs sm:text-sm md:text-base">
                     Calculate Premium
                   </button>
                 </div>
               </div>
-              
+
               {/* Contact Form - Right Side */}
               <div className="bg-white rounded-xl shadow-2xl p-3 sm:p-4 md:p-5 mt-6 md:mt-0">
                 <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-800 mb-3 sm:mb-4 text-center">
@@ -1032,9 +1029,9 @@ const Health_Insurence = ({ isPopupMode = false, onPopupClose }) => {
                 </p>
               </div>
               <div className="rounded-2xl overflow-hidden shadow-xl">
-                <img 
-                  src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80" 
-                  alt="Health Insurance" 
+                <img
+                  src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80"
+                  alt="Health Insurance"
                   className="w-full h-auto object-cover"
                 />
               </div>
@@ -1101,9 +1098,9 @@ const Health_Insurence = ({ isPopupMode = false, onPopupClose }) => {
                 </ul>
               </div>
               <div className="rounded-2xl overflow-hidden shadow-xl">
-                <img 
-                  src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80" 
-                  alt="Financial Planning" 
+                <img
+                  src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80"
+                  alt="Financial Planning"
                   className="w-full h-auto object-cover"
                 />
               </div>
@@ -1154,7 +1151,7 @@ const Health_Insurence = ({ isPopupMode = false, onPopupClose }) => {
               Cashper helps you make the right call by guiding you through these factors to compare health insurance plans in India and unlock tax benefits under Section 80D.
             </p>
             <div className="text-center mt-6 md:mt-8">
-              <button 
+              <button
                 onClick={handleContactNavigation}
                 className="bg-white text-green-700 hover:bg-gray-100 font-bold px-8 md:px-12 py-3 md:py-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 text-base md:text-lg">
                 Get Expert Advice Now
@@ -1209,7 +1206,7 @@ const Health_Insurence = ({ isPopupMode = false, onPopupClose }) => {
                 <p className="text-xs sm:text-sm text-gray-600">Fees for specialists or follow-up visits</p>
               </div>
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mt-6 sm:mt-8 md:mt-12">
               <div className="bg-gradient-to-br from-green-700 to-green-900 text-white rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 shadow-xl">
                 <h4 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4 flex items-center gap-2 sm:gap-3">
@@ -1449,18 +1446,16 @@ const Health_Insurence = ({ isPopupMode = false, onPopupClose }) => {
                 {[1, 2, 3, 4].map((step) => (
                   <React.Fragment key={step}>
                     <div className="flex flex-col items-center flex-1">
-                      <div className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg transition-all duration-300 ${
-                        currentStep === step 
-                          ? 'bg-green-600 text-white shadow-lg scale-110' 
+                      <div className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg transition-all duration-300 ${currentStep === step
+                          ? 'bg-green-600 text-white shadow-lg scale-110'
                           : completedSteps.includes(step)
-                          ? 'bg-green-500 text-white'
-                          : 'bg-gray-200 text-gray-500'
-                      }`}>
+                            ? 'bg-green-500 text-white'
+                            : 'bg-gray-200 text-gray-500'
+                        }`}>
                         {completedSteps.includes(step) ? <FaCheckCircle className="w-6 h-6" /> : step}
                       </div>
-                      <div className={`mt-2 text-xs sm:text-sm font-semibold text-center ${
-                        currentStep === step ? 'text-green-700' : 'text-gray-500'
-                      }`}>
+                      <div className={`mt-2 text-xs sm:text-sm font-semibold text-center ${currentStep === step ? 'text-green-700' : 'text-gray-500'
+                        }`}>
                         {step === 1 && 'Personal'}
                         {step === 2 && 'Coverage'}
                         {step === 3 && 'Address'}
@@ -1468,9 +1463,8 @@ const Health_Insurence = ({ isPopupMode = false, onPopupClose }) => {
                       </div>
                     </div>
                     {step < 4 && (
-                      <div className={`h-1 flex-1 mx-2 transition-all duration-300 ${
-                        completedSteps.includes(step) ? 'bg-green-500' : 'bg-gray-200'
-                      }`}></div>
+                      <div className={`h-1 flex-1 mx-2 transition-all duration-300 ${completedSteps.includes(step) ? 'bg-green-500' : 'bg-gray-200'
+                        }`}></div>
                     )}
                   </React.Fragment>
                 ))}
@@ -1491,7 +1485,7 @@ const Health_Insurence = ({ isPopupMode = false, onPopupClose }) => {
                         <p className="text-gray-600 text-sm">Tell us about yourself</p>
                       </div>
                     </div>
-                    
+
                     <div className="grid sm:grid-cols-2 gap-6">
                       <div className="sm:col-span-2">
                         <label className="text-gray-700 font-semibold mb-2 flex items-center gap-2">
@@ -1629,7 +1623,7 @@ const Health_Insurence = ({ isPopupMode = false, onPopupClose }) => {
                         <p className="text-gray-600 text-sm">Choose your insurance coverage</p>
                       </div>
                     </div>
-                    
+
                     <div className="grid sm:grid-cols-2 gap-6">
                       <div className="sm:col-span-2">
                         <label className="text-gray-700 font-semibold mb-2 flex items-center gap-2">
@@ -1723,7 +1717,7 @@ const Health_Insurence = ({ isPopupMode = false, onPopupClose }) => {
                         <p className="text-gray-600 text-sm">Your current residential address</p>
                       </div>
                     </div>
-                    
+
                     <div className="grid sm:grid-cols-2 gap-6">
                       <div className="sm:col-span-2">
                         <label className="text-gray-700 font-semibold mb-2 flex items-center gap-2">
@@ -1805,7 +1799,7 @@ const Health_Insurence = ({ isPopupMode = false, onPopupClose }) => {
                         <p className="text-gray-600 text-sm">Please upload clear copies of required documents</p>
                       </div>
                     </div>
-                    
+
                     <div className="grid sm:grid-cols-2 gap-6">
                       {[
                         { key: 'aadhar', label: 'Aadhar Card', icon: <IdCard className="w-12 h-12" />, accept: '.pdf,.jpg,.jpeg,.png', size: '5MB' },
@@ -1815,11 +1809,10 @@ const Health_Insurence = ({ isPopupMode = false, onPopupClose }) => {
                         { key: 'addressProof', label: 'Address Proof', icon: <Home className="w-12 h-12" />, accept: '.pdf,.jpg,.jpeg,.png', size: '5MB' }
                       ].map((doc) => (
                         <div key={doc.key} className="relative">
-                          <label className={`border-2 border-dashed rounded-xl p-6 cursor-pointer transition-all duration-300 block ${
-                            documents[doc.key] 
-                              ? 'border-green-500 bg-green-50' 
+                          <label className={`border-2 border-dashed rounded-xl p-6 cursor-pointer transition-all duration-300 block ${documents[doc.key]
+                              ? 'border-green-500 bg-green-50'
                               : 'border-gray-300 hover:border-green-400 bg-white'
-                          }`}>
+                            }`}>
                             <input
                               type="file"
                               accept={doc.accept}
@@ -1865,7 +1858,7 @@ const Health_Insurence = ({ isPopupMode = false, onPopupClose }) => {
                       <div className="flex items-start gap-3">
                         <AlertCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
                         <div className="text-sm text-blue-800">
-                          <strong>Important:</strong> Make sure all documents are clear and readable. For family floater plans, 
+                          <strong>Important:</strong> Make sure all documents are clear and readable. For family floater plans,
                           you may need to upload documents for all family members. Medical tests may be scheduled based on age and coverage amount.
                         </div>
                       </div>
@@ -1923,21 +1916,21 @@ const Health_Insurence = ({ isPopupMode = false, onPopupClose }) => {
                       </div>
                     </div>
                     <div className="flex gap-4 justify-center">
-                    <button
-                      onClick={() => {
-                        setCurrentStep(1);
-                        setCompletedSteps([]);
-                        setFormData({
-                          name: '', email: '', phone: '', age: '', familySize: '',
-                          gender: '', address: '', city: '', state: '', pincode: '',
-                          existingConditions: '', coverageAmount: '', policyType: ''
-                        });
-                        setDocuments({ aadhar: null, pan: null, photo: null, medicalReports: null, addressProof: null });
-                      }}
-                      className="bg-white text-green-600 border-2 border-green-600 hover:bg-green-50 font-semibold px-8 py-4 rounded-full shadow-xl transition-all duration-300 inline-flex items-center justify-center gap-2"
-                    >
-                      Apply for Another Policy
-                    </button>
+                      <button
+                        onClick={() => {
+                          setCurrentStep(1);
+                          setCompletedSteps([]);
+                          setFormData({
+                            name: '', email: '', phone: '', age: '', familySize: '',
+                            gender: '', address: '', city: '', state: '', pincode: '',
+                            existingConditions: '', coverageAmount: '', policyType: ''
+                          });
+                          setDocuments({ aadhar: null, pan: null, photo: null, medicalReports: null, addressProof: null });
+                        }}
+                        className="bg-white text-green-600 border-2 border-green-600 hover:bg-green-50 font-semibold px-8 py-4 rounded-full shadow-xl transition-all duration-300 inline-flex items-center justify-center gap-2"
+                      >
+                        Apply for Another Policy
+                      </button>
                     </div>
                   </div>
                 )}
@@ -1949,11 +1942,10 @@ const Health_Insurence = ({ isPopupMode = false, onPopupClose }) => {
                       type="button"
                       onClick={handlePreviousStep}
                       disabled={currentStep === 1}
-                      className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
-                        currentStep === 1
+                      className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${currentStep === 1
                           ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
                           : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                      }`}
+                        }`}
                     >
                       <ArrowLeft className="w-5 h-5" />
                       Previous
@@ -1994,12 +1986,11 @@ const Health_Insurence = ({ isPopupMode = false, onPopupClose }) => {
             <div className="space-y-3 sm:space-y-4">
               {faqs.map((faq, index) => (
                 <div key={index} className="bg-white rounded-lg sm:rounded-xl shadow-md overflow-hidden border border-gray-200">
-                  <button 
-                    className={`w-full flex items-center justify-between p-4 sm:p-5 md:p-6 text-left transition-all duration-300 ${
-                      activeAccordion === index 
-                        ? 'bg-gradient-to-r from-green-700 to-green-800 text-white' 
+                  <button
+                    className={`w-full flex items-center justify-between p-4 sm:p-5 md:p-6 text-left transition-all duration-300 ${activeAccordion === index
+                        ? 'bg-gradient-to-r from-green-700 to-green-800 text-white'
                         : 'bg-white text-gray-900 hover:bg-gray-50'
-                    }`}
+                      }`}
                     onClick={() => toggleAccordion(index)}
                   >
                     <span className="flex-1 pr-3 sm:pr-4 font-semibold text-sm sm:text-base md:text-lg">{faq.question}</span>
