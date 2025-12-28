@@ -1194,3 +1194,4 @@ const BankAccount = ({ isPopupMode = false, onPopupClose = null }) => {
 
 export default BankAccount;
 
+

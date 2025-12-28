@@ -2017,3 +2017,4 @@ const Mutual_funds = ({ isPopupMode = false, onPopupClose }) => {
 
 export default Mutual_funds;
 
+

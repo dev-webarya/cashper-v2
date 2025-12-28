@@ -1359,3 +1359,4 @@ const RegisterCompany = ({ isPopupMode = false, onPopupClose }) => {
 
 export default RegisterCompany;
 
+

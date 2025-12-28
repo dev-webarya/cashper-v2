@@ -1269,3 +1269,4 @@ const OnlineTradingDemat = ({ isPopupMode = false, onPopupClose = null }) => {
 };
 export default OnlineTradingDemat;
 
+

@@ -660,3 +660,4 @@ const ApplyHUFPAN = ({ isPopupMode = false, onPopupClose = null }) => {
 
 export default ApplyHUFPAN;
 
+

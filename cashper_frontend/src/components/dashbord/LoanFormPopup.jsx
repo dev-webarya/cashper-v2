@@ -63,3 +63,4 @@ const LoanFormPopup = ({ loanType, onClose }) => {
   );
 };
 export default LoanFormPopup;
+

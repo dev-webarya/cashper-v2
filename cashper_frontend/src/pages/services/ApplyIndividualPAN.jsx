@@ -690,3 +690,4 @@ const ApplyIndividualPAN = ({ isPopupMode = false, onPopupClose = null }) => {
 
 export default ApplyIndividualPAN;
 
+

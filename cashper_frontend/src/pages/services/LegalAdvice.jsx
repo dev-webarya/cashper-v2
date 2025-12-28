@@ -1244,3 +1244,4 @@ const LegalAdvice = ({ isPopupMode = false, onPopupClose }) => {
 
 export default LegalAdvice;
 
+

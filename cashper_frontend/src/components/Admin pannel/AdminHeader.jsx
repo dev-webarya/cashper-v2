@@ -300,3 +300,4 @@ const AdminHeader = ({ toggleSidebar, setActiveView, adminProfile }) => {
 
 export default AdminHeader;
 
+

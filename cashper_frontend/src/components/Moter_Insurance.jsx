@@ -18,7 +18,6 @@ import {
   Home,
   MapPin,
   CreditCard,
-  CreditCard,
   Shield,
   Wrench,
   FileCheck
@@ -1614,4 +1613,5 @@ const Moter_Insurance = ({ isPopupMode = false, onPopupClose }) => {
 };
 
 export default Moter_Insurance;
+
 

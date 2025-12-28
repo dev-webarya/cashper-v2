@@ -662,3 +662,4 @@ const FeaturedOffers = () => {
   );
 };
 export default FeaturedOffers;
+

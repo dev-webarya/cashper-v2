@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import termInsuranceApi from '../services/termInsuranceApi';
-import { 
-  Upload, 
-  X, 
-  CheckCircle, 
-  ArrowRight, 
+import {
+  Upload,
+  X,
+  CheckCircle,
+  ArrowRight,
   ArrowLeft,
   FileText,
   AlertCircle,
@@ -18,7 +18,6 @@ import {
   Home,
   MapPin,
   CreditCard,
-  CreditCard,
   Shield,
   Heart,
   IndianRupee,
@@ -29,7 +28,7 @@ import Footer from './Footer';
 
 const Term_Insurance = ({ isPopupMode = false, onPopupClose }) => {
   const navigate = useNavigate();
-  
+
   // Handle navigation to contact page with scroll to hero section
   const handleContactNavigation = () => {
     navigate('/contact');
@@ -40,7 +39,7 @@ const Term_Insurance = ({ isPopupMode = false, onPopupClose }) => {
       });
     }, 100);
   };
-  
+
   // Hero form state (separate from application form)
   const [heroFormData, setHeroFormData] = useState({
     name: '',
@@ -53,7 +52,7 @@ const Term_Insurance = ({ isPopupMode = false, onPopupClose }) => {
 
   const [isSubmittingHero, setIsSubmittingHero] = useState(false);
   const [heroFormErrors, setHeroFormErrors] = useState({});
-  
+
   // Application form state
   const [formData, setFormData] = useState({
     name: '',
@@ -97,18 +96,18 @@ const Term_Insurance = ({ isPopupMode = false, onPopupClose }) => {
   // Hero form submit handler
   const handleHeroFormSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Clear previous errors
     setHeroFormErrors({});
-    
+
     // Validation
     const errors = {};
-    
+
     if (!heroFormData.name.trim()) {
       errors.name = true;
       toast.error('Please enter your name');
     }
-    
+
     if (!heroFormData.email.trim()) {
       errors.email = true;
       toast.error('Please enter your email address');
@@ -116,7 +115,7 @@ const Term_Insurance = ({ isPopupMode = false, onPopupClose }) => {
       errors.email = true;
       toast.error('Please enter a valid email address');
     }
-    
+
     if (!heroFormData.phone.trim()) {
       errors.phone = true;
       toast.error('Please enter your phone number');
@@ -124,7 +123,7 @@ const Term_Insurance = ({ isPopupMode = false, onPopupClose }) => {
       errors.phone = true;
       toast.error('Please enter a valid 10-digit phone number');
     }
-    
+
     if (!heroFormData.age) {
       errors.age = true;
       toast.error('Please enter your age');
@@ -132,12 +131,12 @@ const Term_Insurance = ({ isPopupMode = false, onPopupClose }) => {
       errors.age = true;
       toast.error('Age must be between 18 and 65 years for term insurance');
     }
-    
+
     if (!heroFormData.coverage) {
       errors.coverage = true;
       toast.error('Please enter coverage amount');
     }
-    
+
     if (!heroFormData.term) {
       errors.term = true;
       toast.error('Please enter policy term');
@@ -145,7 +144,7 @@ const Term_Insurance = ({ isPopupMode = false, onPopupClose }) => {
       errors.term = true;
       toast.error('Policy term must be between 5 and 40 years');
     }
-    
+
     // If there are errors, don't submit
     if (Object.keys(errors).length > 0) {
       setHeroFormErrors(errors);
@@ -160,7 +159,7 @@ const Term_Insurance = ({ isPopupMode = false, onPopupClose }) => {
         term: parseInt(heroFormData.term)
       });
       toast.success(response.message || 'Thank you! Our advisor will contact you soon.');
-      
+
       // Reset form
       setHeroFormData({
         name: '',
@@ -198,7 +197,7 @@ const Term_Insurance = ({ isPopupMode = false, onPopupClose }) => {
   };
 
   const validateStep = (step) => {
-    switch(step) {
+    switch (step) {
       case 1:
         if (!formData.name || !formData.name.trim()) {
           toast.error('⚠️ Full name is required');
@@ -330,12 +329,12 @@ const Term_Insurance = ({ isPopupMode = false, onPopupClose }) => {
 
       // Submit application
       const response = await termInsuranceApi.submitTermInsuranceApplication(applicationData, documents);
-      
+
       // Show success and move to step 5
       toast.success(response.message || 'Application submitted successfully!');
       setCompletedSteps([...completedSteps, 4]);
       setCurrentStep(5);
-      
+
       // Store application number for display
       if (response.applicationNumber) {
         setFormData(prev => ({ ...prev, applicationNumber: response.applicationNumber }));
@@ -461,520 +460,520 @@ const Term_Insurance = ({ isPopupMode = false, onPopupClose }) => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
       {!isPopupMode && <Navbar />}
-      
+
       {!isPopupMode && (
-      <>
-      {/* Hero Section */}
-      <section className="relative pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-6 sm:pb-8 md:pb-10 lg:pb-12 min-h-[500px] sm:min-h-[550px] md:min-h-[580px] lg:h-[600px] bg-cover bg-center bg-no-repeat text-white flex items-center"
-        style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1576267423445-b2e0074d68a4?w=1600&q=80')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'center center',
-          backgroundAttachment: 'scroll',
-          backgroundRepeat: 'no-repeat'
-        }}>
-        <div className="absolute inset-0 bg-gradient-to-r from-green-700/60 to-blue-800/50"></div>
-        <div className="relative z-10 max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 w-full">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-10 items-center">
-            <div className="space-y-3 sm:space-y-4 md:space-y-5 text-center md:text-left">
-              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight">
-                Safeguard Your Family's Financial Future
-              </h1>
-              <p className="text-xs sm:text-sm md:text-base lg:text-lg text-blue-100">
-                Secure your loved ones with our trusted term insurance plans. Get expert guidance to find the perfect coverage for your needs.
-              </p>
-              <div className="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3 justify-center md:justify-start pt-2">
-                <button 
+        <>
+          {/* Hero Section */}
+          <section className="relative pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-6 sm:pb-8 md:pb-10 lg:pb-12 min-h-[500px] sm:min-h-[550px] md:min-h-[580px] lg:h-[600px] bg-cover bg-center bg-no-repeat text-white flex items-center"
+            style={{
+              backgroundImage: "url('https://images.unsplash.com/photo-1576267423445-b2e0074d68a4?w=1600&q=80')",
+              backgroundSize: 'cover',
+              backgroundPosition: 'center center',
+              backgroundAttachment: 'scroll',
+              backgroundRepeat: 'no-repeat'
+            }}>
+            <div className="absolute inset-0 bg-gradient-to-r from-green-700/60 to-blue-800/50"></div>
+            <div className="relative z-10 max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 w-full">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-10 items-center">
+                <div className="space-y-3 sm:space-y-4 md:space-y-5 text-center md:text-left">
+                  <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight">
+                    Safeguard Your Family's Financial Future
+                  </h1>
+                  <p className="text-xs sm:text-sm md:text-base lg:text-lg text-blue-100">
+                    Secure your loved ones with our trusted term insurance plans. Get expert guidance to find the perfect coverage for your needs.
+                  </p>
+                  <div className="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3 justify-center md:justify-start pt-2">
+                    <button
+                      onClick={handleContactNavigation}
+                      className="bg-white text-green-700 px-4 sm:px-5 md:px-6 lg:px-7 py-2 sm:py-2.5 md:py-3 rounded-xl font-semibold hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-xs sm:text-sm md:text-base">
+                      Get Expert Advice Now
+                    </button>
+                    <button
+                      onClick={scrollToApplyForm}
+                      className="border-2 border-white text-white px-4 sm:px-5 md:px-6 lg:px-7 py-2 sm:py-2.5 md:py-3 rounded-xl font-semibold hover:bg-white hover:text-green-700 transition-all duration-300 text-xs sm:text-sm md:text-base">
+                      Calculate Premium
+                    </button>
+                  </div>
+                </div>
+
+                {/* Contact Form */}
+                <div className="bg-white rounded-xl shadow-2xl p-3 sm:p-4 md:p-5 mt-6 md:mt-0">
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-800 mb-3 sm:mb-4 text-center">
+                    GET IN TOUCH
+                  </h3>
+                  <form onSubmit={handleHeroFormSubmit} className="space-y-2 sm:space-y-3">
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="Full Name *"
+                      value={heroFormData.name}
+                      onChange={handleHeroFormChange}
+                      className={`w-full px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-lg border ${heroFormErrors.name ? 'border-red-500' : 'border-gray-300'} focus:border-green-600 focus:ring-2 focus:ring-green-200 outline-none text-gray-800 text-xs sm:text-sm`}
+                    />
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Email Address *"
+                      value={heroFormData.email}
+                      onChange={handleHeroFormChange}
+                      className={`w-full px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-lg border ${heroFormErrors.email ? 'border-red-500' : 'border-gray-300'} focus:border-green-600 focus:ring-2 focus:ring-green-200 outline-none text-gray-800 text-xs sm:text-sm`}
+                    />
+                    <input
+                      type="tel"
+                      name="phone"
+                      placeholder="Phone Number *"
+                      value={heroFormData.phone}
+                      onChange={handleHeroFormChange}
+                      className={`w-full px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-lg border ${heroFormErrors.phone ? 'border-red-500' : 'border-gray-300'} focus:border-green-600 focus:ring-2 focus:ring-green-200 outline-none text-gray-800 text-xs sm:text-sm`}
+                    />
+                    <input
+                      type="number"
+                      name="age"
+                      placeholder="Your Age (18-65) *"
+                      value={heroFormData.age}
+                      onChange={handleHeroFormChange}
+                      min="18"
+                      max="65"
+                      className={`w-full px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-lg border ${heroFormErrors.age ? 'border-red-500' : 'border-gray-300'} focus:border-green-600 focus:ring-2 focus:ring-green-200 outline-none text-gray-800 text-xs sm:text-sm`}
+                    />
+                    <input
+                      type="text"
+                      name="coverage"
+                      placeholder="Coverage (e.g., 10000000 for 1 Cr) *"
+                      value={heroFormData.coverage}
+                      onChange={handleHeroFormChange}
+                      className={`w-full px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-lg border ${heroFormErrors.coverage ? 'border-red-500' : 'border-gray-300'} focus:border-green-600 focus:ring-2 focus:ring-green-200 outline-none text-gray-800 text-xs sm:text-sm`}
+                    />
+                    <input
+                      type="number"
+                      name="term"
+                      placeholder="Policy Term (5-40 years) *"
+                      value={heroFormData.term}
+                      onChange={handleHeroFormChange}
+                      min="5"
+                      max="40"
+                      className={`w-full px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-lg border ${heroFormErrors.term ? 'border-red-500' : 'border-gray-300'} focus:border-green-600 focus:ring-2 focus:ring-green-200 outline-none text-gray-800 text-xs sm:text-sm`}
+                    />
+                    <button
+                      type="submit"
+                      disabled={isSubmittingHero}
+                      className="w-full bg-gradient-to-r from-green-600 to-green-700 text-white px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg font-semibold hover:from-green-700 hover:to-green-800 transition-all duration-300 shadow-lg text-xs sm:text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {isSubmittingHero ? 'Submitting...' : 'Submit'}
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* What is Term Insurance */}
+          <section className="py-8 sm:py-10 md:py-12 bg-white">
+            <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-12 items-center">
+                <div className="space-y-4 sm:space-y-5 md:space-y-6 text-center md:text-left order-2 md:order-1">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800">
+                    What is Term Insurance?
+                  </h2>
+                  <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed">
+                    Think of term insurance as income replacement. You pay a small premium for a large coverage amount. In the unfortunate event of the policyholder's passing, the nominee receives the sum assured as a death benefit. This money acts as a financial cushion, supporting your family's daily expenses, loan EMIs, education costs, and more.
+                  </p>
+                  <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed">
+                    Whether you're considering term health insurance or a pure protection plan, the core objective remains—financial stability for your loved ones when you're not around.
+                  </p>
+                </div>
+                <div className="relative order-1 md:order-2">
+                  <div className="bg-gradient-to-br from-green-100 to-blue-100 rounded-2xl p-4 sm:p-6 md:p-8 shadow-xl">
+                    <img
+                      src="https://images.unsplash.com/photo-1576267423445-b2e0074d68a4?w=600"
+                      alt="Family Protection"
+                      className="rounded-xl shadow-lg w-full h-auto"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Why Choose Term Insurance */}
+          <section className="py-8 sm:py-10 md:py-12 bg-gradient-to-b from-blue-50 to-green-50">
+            <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+              <div className="text-center mb-8 sm:mb-10 md:mb-12">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-3 sm:mb-4 px-2">
+                  Why Should You Choose Term Insurance?
+                </h2>
+                <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-3">
+                  A term insurance plan is one of the most affordable and effective tools for risk management. It ensures financial protection without mixing investment goals.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
+                {benefits.map((benefit, index) => (
+                  <div
+                    key={index}
+                    className="bg-white rounded-xl p-4 sm:p-5 md:p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+                  >
+                    <div className="text-4xl sm:text-5xl mb-3 sm:mb-4">{benefit.icon}</div>
+                    <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 sm:mb-3">
+                      {benefit.title}
+                    </h3>
+                    <p className="text-sm sm:text-base text-gray-600">
+                      {benefit.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="text-center mt-8 sm:mt-10 md:mt-12 px-3">
+                <p className="text-base sm:text-lg md:text-xl text-gray-700 font-semibold">
+                  If you're looking for the best term insurance plan, opt for one that matches your life stage and risk coverage needs.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* Why Choose Us */}
+          <section className="py-8 sm:py-10 md:py-12 bg-white">
+            <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+              <div className="text-center mb-8 sm:mb-10 md:mb-12">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-3 sm:mb-4 px-2">
+                  Why Choose Us as Your Term Insurance Advisor?
+                </h2>
+                <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-3">
+                  At Cashper, we blend technology with personal advice to help you select the most suitable term health insurance or life protection plan.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
+                {whyChooseUs.map((item, index) => (
+                  <div
+                    key={index}
+                    className="bg-gradient-to-br from-green-50 to-green-50 rounded-xl p-4 sm:p-5 md:p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-green-200"
+                  >
+                    <div className="text-4xl sm:text-5xl mb-3 sm:mb-4">{item.icon}</div>
+                    <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 sm:mb-3">
+                      {item.title}
+                    </h3>
+                    <p className="text-sm sm:text-base text-gray-600">
+                      {item.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="text-center mt-8 sm:mt-10 md:mt-12">
+                <button
                   onClick={handleContactNavigation}
-                  className="bg-white text-green-700 px-4 sm:px-5 md:px-6 lg:px-7 py-2 sm:py-2.5 md:py-3 rounded-xl font-semibold hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-xs sm:text-sm md:text-base">
+                  className="bg-gradient-to-r from-green-600 to-green-700 text-white px-6 sm:px-8 md:px-10 py-3 sm:py-3.5 md:py-4 rounded-xl font-semibold hover:from-green-700 hover:to-green-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-sm sm:text-base md:text-lg">
                   Get Expert Advice Now
                 </button>
-                <button 
-                  onClick={scrollToApplyForm}
-                  className="border-2 border-white text-white px-4 sm:px-5 md:px-6 lg:px-7 py-2 sm:py-2.5 md:py-3 rounded-xl font-semibold hover:bg-white hover:text-green-700 transition-all duration-300 text-xs sm:text-sm md:text-base">
-                  Calculate Premium
-                </button>
               </div>
             </div>
-            
-            {/* Contact Form */}
-            <div className="bg-white rounded-xl shadow-2xl p-3 sm:p-4 md:p-5 mt-6 md:mt-0">
-              <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-800 mb-3 sm:mb-4 text-center">
-                GET IN TOUCH
-              </h3>
-              <form onSubmit={handleHeroFormSubmit} className="space-y-2 sm:space-y-3">
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Full Name *"
-                  value={heroFormData.name}
-                  onChange={handleHeroFormChange}
-                  className={`w-full px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-lg border ${heroFormErrors.name ? 'border-red-500' : 'border-gray-300'} focus:border-green-600 focus:ring-2 focus:ring-green-200 outline-none text-gray-800 text-xs sm:text-sm`}
-                />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email Address *"
-                  value={heroFormData.email}
-                  onChange={handleHeroFormChange}
-                  className={`w-full px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-lg border ${heroFormErrors.email ? 'border-red-500' : 'border-gray-300'} focus:border-green-600 focus:ring-2 focus:ring-green-200 outline-none text-gray-800 text-xs sm:text-sm`}
-                />
-                <input
-                  type="tel"
-                  name="phone"
-                  placeholder="Phone Number *"
-                  value={heroFormData.phone}
-                  onChange={handleHeroFormChange}
-                  className={`w-full px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-lg border ${heroFormErrors.phone ? 'border-red-500' : 'border-gray-300'} focus:border-green-600 focus:ring-2 focus:ring-green-200 outline-none text-gray-800 text-xs sm:text-sm`}
-                />
-                <input
-                  type="number"
-                  name="age"
-                  placeholder="Your Age (18-65) *"
-                  value={heroFormData.age}
-                  onChange={handleHeroFormChange}
-                  min="18"
-                  max="65"
-                  className={`w-full px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-lg border ${heroFormErrors.age ? 'border-red-500' : 'border-gray-300'} focus:border-green-600 focus:ring-2 focus:ring-green-200 outline-none text-gray-800 text-xs sm:text-sm`}
-                />
-                <input
-                  type="text"
-                  name="coverage"
-                  placeholder="Coverage (e.g., 10000000 for 1 Cr) *"
-                  value={heroFormData.coverage}
-                  onChange={handleHeroFormChange}
-                  className={`w-full px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-lg border ${heroFormErrors.coverage ? 'border-red-500' : 'border-gray-300'} focus:border-green-600 focus:ring-2 focus:ring-green-200 outline-none text-gray-800 text-xs sm:text-sm`}
-                />
-                <input
-                  type="number"
-                  name="term"
-                  placeholder="Policy Term (5-40 years) *"
-                  value={heroFormData.term}
-                  onChange={handleHeroFormChange}
-                  min="5"
-                  max="40"
-                  className={`w-full px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-lg border ${heroFormErrors.term ? 'border-red-500' : 'border-gray-300'} focus:border-green-600 focus:ring-2 focus:ring-green-200 outline-none text-gray-800 text-xs sm:text-sm`}
-                />
-                <button
-                  type="submit"
-                  disabled={isSubmittingHero}
-                  className="w-full bg-gradient-to-r from-green-600 to-green-700 text-white px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg font-semibold hover:from-green-700 hover:to-green-800 transition-all duration-300 shadow-lg text-xs sm:text-sm disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {isSubmittingHero ? 'Submitting...' : 'Submit'}
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
+          </section>
 
-      {/* What is Term Insurance */}
-      <section className="py-8 sm:py-10 md:py-12 bg-white">
-        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-12 items-center">
-            <div className="space-y-4 sm:space-y-5 md:space-y-6 text-center md:text-left order-2 md:order-1">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800">
-                What is Term Insurance?
-              </h2>
-              <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed">
-                Think of term insurance as income replacement. You pay a small premium for a large coverage amount. In the unfortunate event of the policyholder's passing, the nominee receives the sum assured as a death benefit. This money acts as a financial cushion, supporting your family's daily expenses, loan EMIs, education costs, and more.
-              </p>
-              <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed">
-                Whether you're considering term health insurance or a pure protection plan, the core objective remains—financial stability for your loved ones when you're not around.
-              </p>
-            </div>
-            <div className="relative order-1 md:order-2">
-              <div className="bg-gradient-to-br from-green-100 to-blue-100 rounded-2xl p-4 sm:p-6 md:p-8 shadow-xl">
-                <img 
-                  src="https://images.unsplash.com/photo-1576267423445-b2e0074d68a4?w=600" 
-                  alt="Family Protection" 
-                  className="rounded-xl shadow-lg w-full h-auto"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Why Choose Term Insurance */}
-      <section className="py-8 sm:py-10 md:py-12 bg-gradient-to-b from-blue-50 to-green-50">
-        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-          <div className="text-center mb-8 sm:mb-10 md:mb-12">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-3 sm:mb-4 px-2">
-              Why Should You Choose Term Insurance?
-            </h2>
-            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-3">
-              A term insurance plan is one of the most affordable and effective tools for risk management. It ensures financial protection without mixing investment goals.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
-            {benefits.map((benefit, index) => (
-              <div 
-                key={index}
-                className="bg-white rounded-xl p-4 sm:p-5 md:p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
-              >
-                <div className="text-4xl sm:text-5xl mb-3 sm:mb-4">{benefit.icon}</div>
-                <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 sm:mb-3">
-                  {benefit.title}
-                </h3>
-                <p className="text-sm sm:text-base text-gray-600">
-                  {benefit.description}
+          {/* Key Factors */}
+          <section className="py-8 sm:py-10 md:py-12 bg-gradient-to-b from-green-50 to-green-50">
+            <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+              <div className="text-center mb-8 sm:mb-10 md:mb-12">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-3 sm:mb-4 px-2">
+                  Key Factors to Consider Before Buying a Term Insurance Cover
+                </h2>
+                <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-3">
+                  Making the right choice in health insurance term plans or term insurance policies requires looking at more than just the premium. Here's what to assess:
                 </p>
               </div>
-            ))}
-          </div>
 
-          <div className="text-center mt-8 sm:mt-10 md:mt-12 px-3">
-            <p className="text-base sm:text-lg md:text-xl text-gray-700 font-semibold">
-              If you're looking for the best term insurance plan, opt for one that matches your life stage and risk coverage needs.
-            </p>
-          </div>
-        </div>
-      </section>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+                {keyFactors.map((factor, index) => (
+                  <div
+                    key={index}
+                    className="bg-white rounded-xl p-4 sm:p-6 md:p-8 shadow-lg hover:shadow-2xl transition-all duration-300"
+                  >
+                    <div className="text-4xl sm:text-5xl mb-3 sm:mb-4">{factor.icon}</div>
+                    <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 sm:mb-3">
+                      {factor.title}
+                    </h3>
+                    <p className="text-sm sm:text-base text-gray-600">
+                      {factor.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
 
-      {/* Why Choose Us */}
-      <section className="py-8 sm:py-10 md:py-12 bg-white">
-        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-          <div className="text-center mb-8 sm:mb-10 md:mb-12">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-3 sm:mb-4 px-2">
-              Why Choose Us as Your Term Insurance Advisor?
-            </h2>
-            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-3">
-              At Cashper, we blend technology with personal advice to help you select the most suitable term health insurance or life protection plan.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
-            {whyChooseUs.map((item, index) => (
-              <div 
-                key={index}
-                className="bg-gradient-to-br from-green-50 to-green-50 rounded-xl p-4 sm:p-5 md:p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-green-200"
-              >
-                <div className="text-4xl sm:text-5xl mb-3 sm:mb-4">{item.icon}</div>
-                <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 sm:mb-3">
-                  {item.title}
-                </h3>
-                <p className="text-sm sm:text-base text-gray-600">
-                  {item.description}
+          {/* Term vs Life Insurance */}
+          <section className="py-8 sm:py-10 md:py-12 bg-white">
+            <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+              <div className="text-center mb-8 sm:mb-10 md:mb-12">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4 sm:mb-6 px-2">
+                  How is Term Insurance Different from Other Life Insurance Policies?
+                </h2>
+                <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-6 sm:mb-8 px-3">
+                  When comparing term insurance vs life insurance, the key difference lies in cost and coverage:
                 </p>
               </div>
-            ))}
-          </div>
 
-          <div className="text-center mt-8 sm:mt-10 md:mt-12">
-            <button 
-              onClick={handleContactNavigation}
-              className="bg-gradient-to-r from-green-600 to-green-700 text-white px-6 sm:px-8 md:px-10 py-3 sm:py-3.5 md:py-4 rounded-xl font-semibold hover:from-green-700 hover:to-green-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-sm sm:text-base md:text-lg">
-              Get Expert Advice Now
-            </button>
-          </div>
-        </div>
-      </section>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 max-w-5xl mx-auto">
+                <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-4 sm:p-6 md:p-8 shadow-xl border-2 border-green-300">
+                  <h3 className="text-xl sm:text-2xl font-bold text-green-800 mb-4 sm:mb-6 flex items-center">
+                    <span className="text-3xl sm:text-4xl mr-2 sm:mr-3">✓</span>
+                    Term Insurance
+                  </h3>
+                  <div className="space-y-3 sm:space-y-4">
+                    <div className="flex items-start">
+                      <span className="text-green-600 text-lg sm:text-xl mr-2 sm:mr-3 flex-shrink-0 mt-0.5">•</span>
+                      <p className="text-sm sm:text-base text-gray-700">
+                        <span className="font-semibold">Lower premium, higher coverage</span> - Get ₹1 Crore coverage for around ₹8,000/year
+                      </p>
+                    </div>
+                    <div className="flex items-start">
+                      <span className="text-green-600 text-lg sm:text-xl mr-2 sm:mr-3 flex-shrink-0 mt-0.5">•</span>
+                      <p className="text-sm sm:text-base text-gray-700">
+                        Pure protection without investment component
+                      </p>
+                    </div>
+                    <div className="flex items-start">
+                      <span className="text-green-600 text-lg sm:text-xl mr-2 sm:mr-3 flex-shrink-0 mt-0.5">•</span>
+                      <p className="text-sm sm:text-base text-gray-700">
+                        Most cost-effective way to secure family's financial well-being
+                      </p>
+                    </div>
+                  </div>
+                </div>
 
-      {/* Key Factors */}
-      <section className="py-8 sm:py-10 md:py-12 bg-gradient-to-b from-green-50 to-green-50">
-        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-          <div className="text-center mb-8 sm:mb-10 md:mb-12">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-3 sm:mb-4 px-2">
-              Key Factors to Consider Before Buying a Term Insurance Cover
-            </h2>
-            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-3">
-              Making the right choice in health insurance term plans or term insurance policies requires looking at more than just the premium. Here's what to assess:
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
-            {keyFactors.map((factor, index) => (
-              <div 
-                key={index}
-                className="bg-white rounded-xl p-4 sm:p-6 md:p-8 shadow-lg hover:shadow-2xl transition-all duration-300"
-              >
-                <div className="text-4xl sm:text-5xl mb-3 sm:mb-4">{factor.icon}</div>
-                <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 sm:mb-3">
-                  {factor.title}
-                </h3>
-                <p className="text-sm sm:text-base text-gray-600">
-                  {factor.description}
+                <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-4 sm:p-6 md:p-8 shadow-xl border-2 border-gray-300">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6 flex items-center">
+                    <span className="text-3xl sm:text-4xl mr-2 sm:mr-3">↓</span>
+                    Traditional Life Insurance
+                  </h3>
+                  <div className="space-y-3 sm:space-y-4">
+                    <div className="flex items-start">
+                      <span className="text-gray-600 text-lg sm:text-xl mr-2 sm:mr-3 flex-shrink-0 mt-0.5">•</span>
+                      <p className="text-sm sm:text-base text-gray-700">
+                        <span className="font-semibold">Higher premium, lower coverage</span> - ₹1 lakh premium may give only ₹10 lakh coverage
+                      </p>
+                    </div>
+                    <div className="flex items-start">
+                      <span className="text-gray-600 text-lg sm:text-xl mr-2 sm:mr-3 flex-shrink-0 mt-0.5">•</span>
+                      <p className="text-sm sm:text-base text-gray-700">
+                        Combines insurance with investment
+                      </p>
+                    </div>
+                    <div className="flex items-start">
+                      <span className="text-gray-600 text-lg sm:text-xl mr-2 sm:mr-3 flex-shrink-0 mt-0.5">•</span>
+                      <p className="text-sm sm:text-base text-gray-700">
+                        Lower coverage due to investment component
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="text-center mt-8 sm:mt-10 md:mt-12 px-3">
+                <p className="text-base sm:text-lg md:text-xl text-gray-700 font-semibold max-w-3xl mx-auto">
+                  So, if your main goal is protection, not investment, go for a pure term insurance plan—the best way to secure your family's financial well-being.
                 </p>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
+            </div>
+          </section>
 
-      {/* Term vs Life Insurance */}
-      <section className="py-8 sm:py-10 md:py-12 bg-white">
-        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-          <div className="text-center mb-8 sm:mb-10 md:mb-12">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4 sm:mb-6 px-2">
-              How is Term Insurance Different from Other Life Insurance Policies?
-            </h2>
-            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-6 sm:mb-8 px-3">
-              When comparing term insurance vs life insurance, the key difference lies in cost and coverage:
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 max-w-5xl mx-auto">
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-4 sm:p-6 md:p-8 shadow-xl border-2 border-green-300">
-              <h3 className="text-xl sm:text-2xl font-bold text-green-800 mb-4 sm:mb-6 flex items-center">
-                <span className="text-3xl sm:text-4xl mr-2 sm:mr-3">✓</span>
-                Term Insurance
-              </h3>
-              <div className="space-y-3 sm:space-y-4">
-                <div className="flex items-start">
-                  <span className="text-green-600 text-lg sm:text-xl mr-2 sm:mr-3 flex-shrink-0 mt-0.5">•</span>
-                  <p className="text-sm sm:text-base text-gray-700">
-                    <span className="font-semibold">Lower premium, higher coverage</span> - Get ₹1 Crore coverage for around ₹8,000/year
-                  </p>
+          {/* Required Documents Section */}
+          <section className="py-12 sm:py-16 lg:py-20 bg-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="text-center mb-12">
+                <div className="inline-flex items-center gap-2 bg-green-100 px-4 py-2 rounded-full mb-4">
+                  <FileText className="w-5 h-5 text-green-700" />
+                  <span className="text-green-700 font-semibold">Documents Required</span>
                 </div>
-                <div className="flex items-start">
-                  <span className="text-green-600 text-lg sm:text-xl mr-2 sm:mr-3 flex-shrink-0 mt-0.5">•</span>
-                  <p className="text-sm sm:text-base text-gray-700">
-                    Pure protection without investment component
-                  </p>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+                  Documents Needed for Term Insurance
+                </h2>
+                <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                  Keep these documents ready for a smooth application process
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {/* Document 1 */}
+                <div className="bg-gradient-to-br from-blue-50 to-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-blue-100">
+                  <div className="flex items-start gap-4">
+                    <div className="bg-green-600 text-white p-3 rounded-xl">
+                      <CreditCard className="w-6 h-6" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold text-gray-900 mb-2">Identity Proof</h3>
+                      <p className="text-gray-600 text-sm mb-3">
+                        Valid government-issued ID for verification
+                      </p>
+                      <ul className="space-y-2">
+                        <li className="flex items-center text-sm text-gray-700">
+                          <CheckCircle className="w-4 h-4 text-green-600 mr-2 flex-shrink-0" />
+                          Aadhar Card (Mandatory)
+                        </li>
+                        <li className="flex items-center text-sm text-gray-700">
+                          <CheckCircle className="w-4 h-4 text-green-600 mr-2 flex-shrink-0" />
+                          PAN Card (Mandatory)
+                        </li>
+                        <li className="flex items-center text-sm text-gray-700">
+                          <CheckCircle className="w-4 h-4 text-green-600 mr-2 flex-shrink-0" />
+                          Passport / Driving License
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
-                <div className="flex items-start">
-                  <span className="text-green-600 text-lg sm:text-xl mr-2 sm:mr-3 flex-shrink-0 mt-0.5">•</span>
-                  <p className="text-sm sm:text-base text-gray-700">
-                    Most cost-effective way to secure family's financial well-being
-                  </p>
+
+                {/* Document 2 */}
+                <div className="bg-gradient-to-br from-green-50 to-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-green-100">
+                  <div className="flex items-start gap-4">
+                    <div className="bg-green-600 text-white p-3 rounded-xl">
+                      <Home className="w-6 h-6" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold text-gray-900 mb-2">Address Proof</h3>
+                      <p className="text-gray-600 text-sm mb-3">
+                        Current residential address verification
+                      </p>
+                      <ul className="space-y-2">
+                        <li className="flex items-center text-sm text-gray-700">
+                          <CheckCircle className="w-4 h-4 text-green-600 mr-2 flex-shrink-0" />
+                          Aadhar Card
+                        </li>
+                        <li className="flex items-center text-sm text-gray-700">
+                          <CheckCircle className="w-4 h-4 text-green-600 mr-2 flex-shrink-0" />
+                          Utility Bills (recent)
+                        </li>
+                        <li className="flex items-center text-sm text-gray-700">
+                          <CheckCircle className="w-4 h-4 text-green-600 mr-2 flex-shrink-0" />
+                          Passport / Bank Statement
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Document 3 */}
+                <div className="bg-gradient-to-br from-purple-50 to-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-purple-100">
+                  <div className="flex items-start gap-4">
+                    <div className="bg-purple-600 text-white p-3 rounded-xl">
+                      <Calendar className="w-6 h-6" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold text-gray-900 mb-2">Age Proof</h3>
+                      <p className="text-gray-600 text-sm mb-3">
+                        Date of birth verification documents
+                      </p>
+                      <ul className="space-y-2">
+                        <li className="flex items-center text-sm text-gray-700">
+                          <CheckCircle className="w-4 h-4 text-purple-600 mr-2 flex-shrink-0" />
+                          Birth Certificate
+                        </li>
+                        <li className="flex items-center text-sm text-gray-700">
+                          <CheckCircle className="w-4 h-4 text-purple-600 mr-2 flex-shrink-0" />
+                          PAN Card / Aadhar Card
+                        </li>
+                        <li className="flex items-center text-sm text-gray-700">
+                          <CheckCircle className="w-4 h-4 text-purple-600 mr-2 flex-shrink-0" />
+                          School Leaving Certificate
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Document 4 */}
+                <div className="bg-gradient-to-br from-orange-50 to-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-orange-100">
+                  <div className="flex items-start gap-4">
+                    <div className="bg-orange-600 text-white p-3 rounded-xl">
+                      <IndianRupee className="w-6 h-6" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold text-gray-900 mb-2">Income Proof</h3>
+                      <p className="text-gray-600 text-sm mb-3">
+                        Financial status verification documents
+                      </p>
+                      <ul className="space-y-2">
+                        <li className="flex items-center text-sm text-gray-700">
+                          <CheckCircle className="w-4 h-4 text-orange-600 mr-2 flex-shrink-0" />
+                          Salary Slips (last 3 months)
+                        </li>
+                        <li className="flex items-center text-sm text-gray-700">
+                          <CheckCircle className="w-4 h-4 text-orange-600 mr-2 flex-shrink-0" />
+                          Bank Statements (6 months)
+                        </li>
+                        <li className="flex items-center text-sm text-gray-700">
+                          <CheckCircle className="w-4 h-4 text-orange-600 mr-2 flex-shrink-0" />
+                          ITR / Form 16
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Document 5 */}
+                <div className="bg-gradient-to-br from-red-50 to-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-red-100">
+                  <div className="flex items-start gap-4">
+                    <div className="bg-red-600 text-white p-3 rounded-xl">
+                      <Heart className="w-6 h-6" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold text-gray-900 mb-2">Medical Reports</h3>
+                      <p className="text-gray-600 text-sm mb-3">
+                        Health assessment documents (if required)
+                      </p>
+                      <ul className="space-y-2">
+                        <li className="flex items-center text-sm text-gray-700">
+                          <CheckCircle className="w-4 h-4 text-red-600 mr-2 flex-shrink-0" />
+                          Medical Test Reports
+                        </li>
+                        <li className="flex items-center text-sm text-gray-700">
+                          <CheckCircle className="w-4 h-4 text-red-600 mr-2 flex-shrink-0" />
+                          Health Check-up Reports
+                        </li>
+                        <li className="flex items-center text-sm text-gray-700">
+                          <CheckCircle className="w-4 h-4 text-red-600 mr-2 flex-shrink-0" />
+                          Medical History (if any)
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Document 6 */}
+                <div className="bg-gradient-to-br from-teal-50 to-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-teal-100">
+                  <div className="flex items-start gap-4">
+                    <div className="bg-teal-600 text-white p-3 rounded-xl">
+                      <User className="w-6 h-6" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold text-gray-900 mb-2">Photographs</h3>
+                      <p className="text-gray-600 text-sm mb-3">
+                        Recent passport-size photographs
+                      </p>
+                      <ul className="space-y-2">
+                        <li className="flex items-center text-sm text-gray-700">
+                          <CheckCircle className="w-4 h-4 text-teal-600 mr-2 flex-shrink-0" />
+                          2-3 Passport Size Photos
+                        </li>
+                        <li className="flex items-center text-sm text-gray-700">
+                          <CheckCircle className="w-4 h-4 text-teal-600 mr-2 flex-shrink-0" />
+                          White Background
+                        </li>
+                        <li className="flex items-center text-sm text-gray-700">
+                          <CheckCircle className="w-4 h-4 text-teal-600 mr-2 flex-shrink-0" />
+                          Recent (within 6 months)
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            
-            <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-4 sm:p-6 md:p-8 shadow-xl border-2 border-gray-300">
-              <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6 flex items-center">
-                <span className="text-3xl sm:text-4xl mr-2 sm:mr-3">↓</span>
-                Traditional Life Insurance
-              </h3>
-              <div className="space-y-3 sm:space-y-4">
-                <div className="flex items-start">
-                  <span className="text-gray-600 text-lg sm:text-xl mr-2 sm:mr-3 flex-shrink-0 mt-0.5">•</span>
-                  <p className="text-sm sm:text-base text-gray-700">
-                    <span className="font-semibold">Higher premium, lower coverage</span> - ₹1 lakh premium may give only ₹10 lakh coverage
-                  </p>
-                </div>
-                <div className="flex items-start">
-                  <span className="text-gray-600 text-lg sm:text-xl mr-2 sm:mr-3 flex-shrink-0 mt-0.5">•</span>
-                  <p className="text-sm sm:text-base text-gray-700">
-                    Combines insurance with investment
-                  </p>
-                </div>
-                <div className="flex items-start">
-                  <span className="text-gray-600 text-lg sm:text-xl mr-2 sm:mr-3 flex-shrink-0 mt-0.5">•</span>
-                  <p className="text-sm sm:text-base text-gray-700">
-                    Lower coverage due to investment component
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+          </section>
 
-          <div className="text-center mt-8 sm:mt-10 md:mt-12 px-3">
-            <p className="text-base sm:text-lg md:text-xl text-gray-700 font-semibold max-w-3xl mx-auto">
-              So, if your main goal is protection, not investment, go for a pure term insurance plan—the best way to secure your family's financial well-being.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Required Documents Section */}
-      <section className="py-12 sm:py-16 lg:py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 bg-green-100 px-4 py-2 rounded-full mb-4">
-              <FileText className="w-5 h-5 text-green-700" />
-              <span className="text-green-700 font-semibold">Documents Required</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              Documents Needed for Term Insurance
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Keep these documents ready for a smooth application process
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Document 1 */}
-            <div className="bg-gradient-to-br from-blue-50 to-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-blue-100">
-              <div className="flex items-start gap-4">
-                <div className="bg-green-600 text-white p-3 rounded-xl">
-                  <CreditCard className="w-6 h-6" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Identity Proof</h3>
-                  <p className="text-gray-600 text-sm mb-3">
-                    Valid government-issued ID for verification
-                  </p>
-                  <ul className="space-y-2">
-                    <li className="flex items-center text-sm text-gray-700">
-                      <CheckCircle className="w-4 h-4 text-green-600 mr-2 flex-shrink-0" />
-                      Aadhar Card (Mandatory)
-                    </li>
-                    <li className="flex items-center text-sm text-gray-700">
-                      <CheckCircle className="w-4 h-4 text-green-600 mr-2 flex-shrink-0" />
-                      PAN Card (Mandatory)
-                    </li>
-                    <li className="flex items-center text-sm text-gray-700">
-                      <CheckCircle className="w-4 h-4 text-green-600 mr-2 flex-shrink-0" />
-                      Passport / Driving License
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            {/* Document 2 */}
-            <div className="bg-gradient-to-br from-green-50 to-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-green-100">
-              <div className="flex items-start gap-4">
-                <div className="bg-green-600 text-white p-3 rounded-xl">
-                  <Home className="w-6 h-6" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Address Proof</h3>
-                  <p className="text-gray-600 text-sm mb-3">
-                    Current residential address verification
-                  </p>
-                  <ul className="space-y-2">
-                    <li className="flex items-center text-sm text-gray-700">
-                      <CheckCircle className="w-4 h-4 text-green-600 mr-2 flex-shrink-0" />
-                      Aadhar Card
-                    </li>
-                    <li className="flex items-center text-sm text-gray-700">
-                      <CheckCircle className="w-4 h-4 text-green-600 mr-2 flex-shrink-0" />
-                      Utility Bills (recent)
-                    </li>
-                    <li className="flex items-center text-sm text-gray-700">
-                      <CheckCircle className="w-4 h-4 text-green-600 mr-2 flex-shrink-0" />
-                      Passport / Bank Statement
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            {/* Document 3 */}
-            <div className="bg-gradient-to-br from-purple-50 to-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-purple-100">
-              <div className="flex items-start gap-4">
-                <div className="bg-purple-600 text-white p-3 rounded-xl">
-                  <Calendar className="w-6 h-6" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Age Proof</h3>
-                  <p className="text-gray-600 text-sm mb-3">
-                    Date of birth verification documents
-                  </p>
-                  <ul className="space-y-2">
-                    <li className="flex items-center text-sm text-gray-700">
-                      <CheckCircle className="w-4 h-4 text-purple-600 mr-2 flex-shrink-0" />
-                      Birth Certificate
-                    </li>
-                    <li className="flex items-center text-sm text-gray-700">
-                      <CheckCircle className="w-4 h-4 text-purple-600 mr-2 flex-shrink-0" />
-                      PAN Card / Aadhar Card
-                    </li>
-                    <li className="flex items-center text-sm text-gray-700">
-                      <CheckCircle className="w-4 h-4 text-purple-600 mr-2 flex-shrink-0" />
-                      School Leaving Certificate
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            {/* Document 4 */}
-            <div className="bg-gradient-to-br from-orange-50 to-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-orange-100">
-              <div className="flex items-start gap-4">
-                <div className="bg-orange-600 text-white p-3 rounded-xl">
-                  <IndianRupee className="w-6 h-6" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Income Proof</h3>
-                  <p className="text-gray-600 text-sm mb-3">
-                    Financial status verification documents
-                  </p>
-                  <ul className="space-y-2">
-                    <li className="flex items-center text-sm text-gray-700">
-                      <CheckCircle className="w-4 h-4 text-orange-600 mr-2 flex-shrink-0" />
-                      Salary Slips (last 3 months)
-                    </li>
-                    <li className="flex items-center text-sm text-gray-700">
-                      <CheckCircle className="w-4 h-4 text-orange-600 mr-2 flex-shrink-0" />
-                      Bank Statements (6 months)
-                    </li>
-                    <li className="flex items-center text-sm text-gray-700">
-                      <CheckCircle className="w-4 h-4 text-orange-600 mr-2 flex-shrink-0" />
-                      ITR / Form 16
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            {/* Document 5 */}
-            <div className="bg-gradient-to-br from-red-50 to-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-red-100">
-              <div className="flex items-start gap-4">
-                <div className="bg-red-600 text-white p-3 rounded-xl">
-                  <Heart className="w-6 h-6" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Medical Reports</h3>
-                  <p className="text-gray-600 text-sm mb-3">
-                    Health assessment documents (if required)
-                  </p>
-                  <ul className="space-y-2">
-                    <li className="flex items-center text-sm text-gray-700">
-                      <CheckCircle className="w-4 h-4 text-red-600 mr-2 flex-shrink-0" />
-                      Medical Test Reports
-                    </li>
-                    <li className="flex items-center text-sm text-gray-700">
-                      <CheckCircle className="w-4 h-4 text-red-600 mr-2 flex-shrink-0" />
-                      Health Check-up Reports
-                    </li>
-                    <li className="flex items-center text-sm text-gray-700">
-                      <CheckCircle className="w-4 h-4 text-red-600 mr-2 flex-shrink-0" />
-                      Medical History (if any)
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            {/* Document 6 */}
-            <div className="bg-gradient-to-br from-teal-50 to-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-teal-100">
-              <div className="flex items-start gap-4">
-                <div className="bg-teal-600 text-white p-3 rounded-xl">
-                  <User className="w-6 h-6" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Photographs</h3>
-                  <p className="text-gray-600 text-sm mb-3">
-                    Recent passport-size photographs
-                  </p>
-                  <ul className="space-y-2">
-                    <li className="flex items-center text-sm text-gray-700">
-                      <CheckCircle className="w-4 h-4 text-teal-600 mr-2 flex-shrink-0" />
-                      2-3 Passport Size Photos
-                    </li>
-                    <li className="flex items-center text-sm text-gray-700">
-                      <CheckCircle className="w-4 h-4 text-teal-600 mr-2 flex-shrink-0" />
-                      White Background
-                    </li>
-                    <li className="flex items-center text-sm text-gray-700">
-                      <CheckCircle className="w-4 h-4 text-teal-600 mr-2 flex-shrink-0" />
-                      Recent (within 6 months)
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Multi-Step Application Form Section */}
-      </>
+          {/* Multi-Step Application Form Section */}
+        </>
       )}
 
       <section id="apply-form" className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-green-50">
@@ -998,18 +997,16 @@ const Term_Insurance = ({ isPopupMode = false, onPopupClose }) => {
               {[1, 2, 3, 4].map((step) => (
                 <React.Fragment key={step}>
                   <div className="flex flex-col items-center flex-1">
-                    <div className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg transition-all duration-300 ${
-                      currentStep === step 
-                        ? 'bg-green-600 text-white shadow-lg scale-110' 
+                    <div className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg transition-all duration-300 ${currentStep === step
+                        ? 'bg-green-600 text-white shadow-lg scale-110'
                         : completedSteps.includes(step)
-                        ? 'bg-green-500 text-white'
-                        : 'bg-gray-200 text-gray-500'
-                    }`}>
+                          ? 'bg-green-500 text-white'
+                          : 'bg-gray-200 text-gray-500'
+                      }`}>
                       {completedSteps.includes(step) ? <CheckCircle className="w-6 h-6" /> : step}
                     </div>
-                    <div className={`mt-2 text-xs sm:text-sm font-semibold text-center ${
-                      currentStep === step ? 'text-green-700' : 'text-gray-500'
-                    }`}>
+                    <div className={`mt-2 text-xs sm:text-sm font-semibold text-center ${currentStep === step ? 'text-green-700' : 'text-gray-500'
+                      }`}>
                       {step === 1 && 'Personal'}
                       {step === 2 && 'Coverage'}
                       {step === 3 && 'Address'}
@@ -1017,9 +1014,8 @@ const Term_Insurance = ({ isPopupMode = false, onPopupClose }) => {
                     </div>
                   </div>
                   {step < 4 && (
-                    <div className={`h-1 flex-1 mx-2 transition-all duration-300 ${
-                      completedSteps.includes(step) ? 'bg-green-500' : 'bg-gray-200'
-                    }`}></div>
+                    <div className={`h-1 flex-1 mx-2 transition-all duration-300 ${completedSteps.includes(step) ? 'bg-green-500' : 'bg-gray-200'
+                      }`}></div>
                   )}
                 </React.Fragment>
               ))}
@@ -1040,7 +1036,7 @@ const Term_Insurance = ({ isPopupMode = false, onPopupClose }) => {
                       <p className="text-gray-600 text-sm">Tell us about yourself</p>
                     </div>
                   </div>
-                  
+
                   <div className="grid sm:grid-cols-2 gap-6">
                     <div className="sm:col-span-2">
                       <label className="text-gray-700 font-semibold mb-2 flex items-center gap-2">
@@ -1198,7 +1194,7 @@ const Term_Insurance = ({ isPopupMode = false, onPopupClose }) => {
                       <p className="text-gray-600 text-sm">Choose your life cover amount</p>
                     </div>
                   </div>
-                  
+
                   <div className="grid sm:grid-cols-2 gap-6">
                     <div className="sm:col-span-2">
                       <label className="text-gray-700 font-semibold mb-2 flex items-center gap-2">
@@ -1295,7 +1291,7 @@ const Term_Insurance = ({ isPopupMode = false, onPopupClose }) => {
                       <p className="text-gray-600 text-sm">Your current residential address</p>
                     </div>
                   </div>
-                  
+
                   <div className="grid sm:grid-cols-2 gap-6">
                     <div className="sm:col-span-2">
                       <label className="text-gray-700 font-semibold mb-2 flex items-center gap-2">
@@ -1377,7 +1373,7 @@ const Term_Insurance = ({ isPopupMode = false, onPopupClose }) => {
                       <p className="text-gray-600 text-sm">Please upload clear copies of required documents</p>
                     </div>
                   </div>
-                  
+
                   <div className="grid sm:grid-cols-2 gap-6">
                     {[
                       { key: 'aadhar', label: 'Aadhar Card', icon: <CreditCard className="w-12 h-12" />, accept: '.pdf,.jpg,.jpeg,.png', size: '5MB' },
@@ -1387,11 +1383,10 @@ const Term_Insurance = ({ isPopupMode = false, onPopupClose }) => {
                       { key: 'medicalReports', label: 'Medical Reports', icon: <Heart className="w-12 h-12" />, accept: '.pdf,.jpg,.jpeg,.png', size: '10MB', note: 'If required' }
                     ].map((doc) => (
                       <div key={doc.key} className="relative">
-                        <label className={`border-2 border-dashed rounded-xl p-6 cursor-pointer transition-all duration-300 block ${
-                          documents[doc.key] 
-                            ? 'border-blue-500 bg-blue-50' 
+                        <label className={`border-2 border-dashed rounded-xl p-6 cursor-pointer transition-all duration-300 block ${documents[doc.key]
+                            ? 'border-blue-500 bg-blue-50'
                             : 'border-gray-300 hover:border-blue-400 bg-white'
-                        }`}>
+                          }`}>
                           <input
                             type="file"
                             accept={doc.accept}
@@ -1437,8 +1432,8 @@ const Term_Insurance = ({ isPopupMode = false, onPopupClose }) => {
                     <div className="flex items-start gap-3">
                       <AlertCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
                       <div className="text-sm text-blue-800">
-                        <strong>Important:</strong> All documents should be clear and readable. Medical tests will be 
-                        scheduled based on your age and coverage amount. Smokers may require additional health assessments. 
+                        <strong>Important:</strong> All documents should be clear and readable. Medical tests will be
+                        scheduled based on your age and coverage amount. Smokers may require additional health assessments.
                         Original documents may be verified by our representative.
                       </div>
                     </div>
@@ -1516,11 +1511,10 @@ const Term_Insurance = ({ isPopupMode = false, onPopupClose }) => {
                     type="button"
                     onClick={handlePreviousStep}
                     disabled={currentStep === 1}
-                    className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
-                      currentStep === 1
+                    className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${currentStep === 1
                         ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
                         : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                    }`}
+                      }`}
                   >
                     <ArrowLeft className="w-5 h-5" />
                     Previous
@@ -1562,10 +1556,10 @@ const Term_Insurance = ({ isPopupMode = false, onPopupClose }) => {
               Get answers to common questions about term insurance
             </p>
           </div>
-          
+
           <div className="space-y-3 sm:space-y-4">
             {faqs.map((faq, index) => (
-              <div 
+              <div
                 key={index}
                 className="bg-white rounded-xl shadow-lg overflow-hidden"
               >
@@ -1601,12 +1595,12 @@ const Term_Insurance = ({ isPopupMode = false, onPopupClose }) => {
             Get personalized term insurance recommendations from our expert advisors today
           </p>
           <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4">
-            <button 
+            <button
               onClick={scrollToApplyForm}
               className="bg-white text-green-700 px-6 sm:px-8 md:px-10 py-3 sm:py-3.5 md:py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-sm sm:text-base md:text-lg">
               Get Started Now
             </button>
-            <button 
+            <button
               onClick={handleContactNavigation}
               className="border-2 border-white text-white px-6 sm:px-8 md:px-10 py-3 sm:py-3.5 md:py-4 rounded-xl font-semibold hover:bg-white hover:text-green-700 transition-all duration-300 text-sm sm:text-base md:text-lg">
               Talk to Expert
@@ -1621,5 +1615,6 @@ const Term_Insurance = ({ isPopupMode = false, onPopupClose }) => {
 };
 
 export default Term_Insurance;
+
 
 
