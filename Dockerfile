@@ -13,7 +13,7 @@ WORKDIR /app/frontend
 COPY cashper_frontend/package*.json ./
 
 # Install dependencies
-RUN npm ci
+RUN npm install --legacy-peer-deps
 
 # Copy frontend source
 COPY cashper_frontend/ ./
