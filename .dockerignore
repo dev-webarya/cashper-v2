@@ -1,0 +1,38 @@
+# Dependencies
+node_modules
+venv
+.venv
+__pycache__
+*.pyc
+
+# Build artifacts
+dist
+build
+
+# Git
+.git
+.gitignore
+
+# Environment files (we use env_file in compose)
+.env.local
+.env.development
+
+# Logs
+*.log
+
+# IDE
+.vscode
+.idea
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Test files
+coverage
+.pytest_cache
+.nyc_output
+
+# Documentation
+*.md
+!README.md
