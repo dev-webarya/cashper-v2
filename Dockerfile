@@ -18,8 +18,8 @@ RUN npm ci
 # Copy frontend source
 COPY cashper_frontend/ ./
 
-# Build for production (use npx to avoid permission issues)
-RUN npx vite build
+# Build for production (use node to run vite directly)
+RUN node ./node_modules/vite/bin/vite.js build
 
 # =====================================================
 # STAGE 2: Backend Base
